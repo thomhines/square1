@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+	<title>Site Title</title>
+	<link href="https://plus.google.com/GooglePlusId" rel="publisher"/>
+	<meta charset="utf-8" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+	<meta name="theme-color" content="#333">
+	<link rel="shortcut icon" href="favicon.ico" />
+	<link rel="Stylesheet" href="demo.css" type="text/css" media="all" />
+	<link rel="Stylesheet" href="../square1.css" type="text/css" media="all" />
+</head>
+
+<body>
+	
+	<h1>Square1 Slider</h1>
+	
+	<a href="https://github.com/thomhines/square1">Check it on Github</a>
+	
+	<h2>Examples</h2>
+	
+	<code>
+$('.slideshow1').square1({
+	prev_next_nav: 'hover',
+	dots_nav: 'hover',
+	fill_mode: 'cover'
+});
+	</code>
+
+	<div class="slideshow1">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+	
+	<hr>
+	
+	<code>
+$('.slideshow2').square1({
+	prev_next_nav: 'outside',
+	dots_nav: 'outside'
+});
+	</code>
+	
+	<div class="slideshow2">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+	
+	<hr>
+	
+	<code>
+$('.slideshow3').square1({
+	slide_duration: 100,
+	transition_time: 1000,
+	auto_start: false,
+	prev_next_nav: 'none',
+	dots_nav: 'none'
+});
+
+$('.custom_next_slide').click(function() {
+	$('.slideshow3').square1('play');
+});
+	</code>
+	
+	<div class="slideshow3">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+	<button class="custom_next_slide">Next slide...</button>
+
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="../square1.js"></script>
+	<script>
+		$(function() {
+			$('.slideshow1').square1({
+				prev_next_nav: 'hover',
+				dots_nav: 'hover',
+				fill_mode: 'cover'
+			});
+			
+			
+			$('.slideshow2').square1({
+				prev_next_nav: 'outside',
+				dots_nav: 'outside'
+			});
+			
+			
+			$('.slideshow3').square1({
+				slide_duration: 100,
+				transition_time: 1000,
+				auto_start: false,
+				prev_next_nav: 'none',
+				dots_nav: 'none'
+			});
+			
+			$('.custom_next_slide').click(function() {
+				$('.slideshow3').square1('play');
+			});
+			
+		});
+	</script>
+
+</body>
+</html>
+
+

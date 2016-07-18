@@ -1,0 +1,45 @@
+body {
+	width: 600px;
+	margin: auto;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	background: #d2d1dd;
+	color: #1f2255;
+}
+
+* {
+	font-weight: 100;
+}
+
+
+h2 {
+	margin: 80px 0 0;
+}
+
+code {
+	display: block;
+	margin: 40px 0 15px;
+	padding: 2em;
+	background: #9b99ae;
+	white-space: pre;
+}
+
+hr {
+	margin: 100px 200px;
+}
+
+[class*="slideshow"] {
+	width: 600px;
+	height: 400px;
+	margin-bottom: 40px;
+}
+
+button {
+	display: block;
+	margin: 10px auto 50px;
+	padding: .5em 1em;
+	font-size: 1.4em;
+	background: #1f2255;
+	color: #d2d1dd;
+	border: 0;
+	text-transform: uppercase;
+}
