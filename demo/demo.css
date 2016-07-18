@@ -33,6 +33,10 @@ hr {
 	margin-bottom: 40px;
 }
 
+[class*="slideshow"] img {
+	display:none;
+}
+
 button {
 	display: block;
 	margin: 10px auto 50px;

@@ -2,7 +2,6 @@
 	font-family: helvetica, arial, sans-serif;
 }
 
-[class*="slideshow"] img,
 .square1 img {
 	display:none;
 }
