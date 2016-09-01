@@ -7,7 +7,6 @@
 	<meta name="description" content="" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="theme-color" content="#333">
-	<link rel="shortcut icon" href="favicon.ico" />
 	<link rel="Stylesheet" href="demo.css" type="text/css" media="all" />
 	<link rel="Stylesheet" href="../square1.css" type="text/css" media="all" />
 </head>
@@ -19,6 +18,8 @@
 	<a href="https://github.com/thomhines/square1">Check it on Github</a>
 	
 	<h2>Examples</h2>
+	
+	<p>One thing that sets Square1 apart from other sliders is the ability to either have the images fill the space or be resized so that the entirety of the image is shown without cropping. The <b>fill_mode</b> property will let you control how and how much of your images people see.</p>
 	
 	<code>
 $('.slideshow1').square1({
@@ -38,8 +39,10 @@ $('.slideshow1').square1({
 	
 	<code>
 $('.slideshow2').square1({
+	height: '30vh',
 	prev_next_nav: 'outside',
-	dots_nav: 'outside'
+	dots_nav: 'outside',
+	caption: 'inside'
 });
 	</code>
 	
@@ -53,6 +56,21 @@ $('.slideshow2').square1({
 	
 	<code>
 $('.slideshow3').square1({
+	prev_next_nav: 'outside',
+	dots_nav: 'outside'
+});
+	</code>
+	
+	<div class="slideshow3">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+	
+	<hr>
+	
+	<code>
+$('.slideshow4').square1({
 	slide_duration: 100,
 	transition_time: 1000,
 	auto_start: false,
@@ -61,11 +79,11 @@ $('.slideshow3').square1({
 });
 
 $('.custom_next_slide').click(function() {
-	$('.slideshow3').square1('play');
+	$('.slideshow4').square1('next');
 });
 	</code>
 	
-	<div class="slideshow3">
+	<div class="slideshow4">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
@@ -84,12 +102,20 @@ $('.custom_next_slide').click(function() {
 			
 			
 			$('.slideshow2').square1({
+				height: '60vh',
 				prev_next_nav: 'outside',
-				dots_nav: 'outside'
+				dots_nav: 'outside',
+				caption: 'inside'
 			});
 			
 			
 			$('.slideshow3').square1({
+				caption: 'none',
+				theme: 'light'
+			});
+			
+			
+			$('.slideshow4').square1({
 				slide_duration: 100,
 				transition_time: 1000,
 				auto_start: false,
@@ -98,7 +124,7 @@ $('.custom_next_slide').click(function() {
 			});
 			
 			$('.custom_next_slide').click(function() {
-				$('.slideshow3').square1('play');
+				$('.slideshow4').square1('next');
 			});
 			
 		});

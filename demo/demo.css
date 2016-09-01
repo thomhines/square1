@@ -1,25 +1,33 @@
 body {
-	width: 600px;
+	width: 90%;
+	max-width: 600px;
 	margin: auto;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	background: #d2d1dd;
-	color: #1f2255;
+	background: #868686;
+	color: #0d0d0d;
 }
 
 * {
-	font-weight: 100;
+	font-weight: 300;
 }
-
 
 h2 {
 	margin: 80px 0 0;
+}
+
+a {
+	color: #2e398b;
+}
+
+b {
+	font-weight: 700;
 }
 
 code {
 	display: block;
 	margin: 40px 0 15px;
 	padding: 2em;
-	background: #9b99ae;
+	background: #dcdcdc;
 	white-space: pre;
 }
 
@@ -28,7 +36,7 @@ hr {
 }
 
 [class*="slideshow"] {
-	width: 600px;
+	max-width: 600px;
 	height: 400px;
 	margin-bottom: 40px;
 }
