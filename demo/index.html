@@ -15,7 +15,7 @@
 	
 	<h1>Square1 Slider</h1>
 	
-	<a href="https://github.com/thomhines/square1">Check it on Github</a>
+	<h4>Download and out the documentation on <a href="https://github.com/thomhines/square1">GitHub</a>.</h4>
 	
 	<h2>Examples</h2>
 	
@@ -23,13 +23,24 @@
 	
 	<code>
 $('.slideshow1').square1({
-	prev_next_nav: 'hover',
-	dots_nav: 'hover',
-	fill_mode: 'cover'
+	fill_mode: '<b>cover</b>'
 });
 	</code>
 
 	<div class="slideshow1">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+
+	
+	<code>
+$('.slideshow1').square1({
+	fill_mode: '<b>contain</b>'
+});
+	</code>
+
+	<div class="slideshow1_1">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
@@ -89,15 +100,20 @@ $('.custom_next_slide').click(function() {
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 	<button class="custom_next_slide">Next slide...</button>
+	
+	<footer>
+		&copy; 2016 Thom Hines | <a href="http://projects.thomhines.com/square1/LICENSE">License</a>
 
 	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="../square1.js"></script>
 	<script>
 		$(function() {
 			$('.slideshow1').square1({
-				prev_next_nav: 'hover',
-				dots_nav: 'hover',
 				fill_mode: 'cover'
+			});
+			
+			$('.slideshow1_1').square1({
+				fill_mode: 'contain'
 			});
 			
 			
