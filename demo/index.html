@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html lang="en-us">
 <head>
-	<title>Site Title</title>
-	<link href="https://plus.google.com/GooglePlusId" rel="publisher"/>
-	<meta charset="utf-8" />
-	<meta name="description" content="" />
+	<title>Square1 jQuery Slider</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="theme-color" content="#333">
 	<link rel="Stylesheet" href="demo.css" type="text/css" media="all" />
@@ -12,15 +9,15 @@
 </head>
 
 <body>
-	
-	<h1>Square1 Slider</h1>
-	
+
+	<h1>Square1 jQuery Slider</h1>
+
 	<h4>Download and out the documentation on <a href="https://github.com/thomhines/square1">GitHub</a>.</h4>
-	
+
 	<h2>Examples</h2>
-	
+
 	<p>One thing that sets Square1 apart from other sliders is the ability to either have the images fill the space or be resized so that the entirety of the image is shown without cropping. The <b>fill_mode</b> property will let you control how and how much of your images people see.</p>
-	
+
 	<code>
 $('.slideshow1').square1({
 	fill_mode: '<b>cover</b>'
@@ -33,7 +30,7 @@ $('.slideshow1').square1({
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 
-	
+
 	<code>
 $('.slideshow1').square1({
 	fill_mode: '<b>contain</b>'
@@ -45,9 +42,9 @@ $('.slideshow1').square1({
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
-	
+
 	<hr>
-	
+
 	<code>
 $('.slideshow2').square1({
 	height: '30vh',
@@ -56,30 +53,30 @@ $('.slideshow2').square1({
 	caption: 'inside'
 });
 	</code>
-	
+
 	<div class="slideshow2">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
-	
+
 	<hr>
-	
+
 	<code>
 $('.slideshow3').square1({
 	prev_next_nav: 'outside',
 	dots_nav: 'outside'
 });
 	</code>
-	
+
 	<div class="slideshow3">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
-	
+
 	<hr>
-	
+
 	<code>
 $('.slideshow4').square1({
 	slide_duration: 100,
@@ -93,14 +90,14 @@ $('.custom_next_slide').click(function() {
 	$('.slideshow4').square1('next');
 });
 	</code>
-	
+
 	<div class="slideshow4">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 	<button class="custom_next_slide">Next slide...</button>
-	
+
 	<footer>
 		&copy; 2016 Thom Hines | <a href="http://projects.thomhines.com/square1/LICENSE">License</a>
 
@@ -111,26 +108,26 @@ $('.custom_next_slide').click(function() {
 			$('.slideshow1').square1({
 				fill_mode: 'cover'
 			});
-			
+
 			$('.slideshow1_1').square1({
 				fill_mode: 'contain'
 			});
-			
-			
+
+
 			$('.slideshow2').square1({
 				height: '60vh',
 				prev_next_nav: 'outside',
 				dots_nav: 'outside',
 				caption: 'inside'
 			});
-			
-			
+
+
 			$('.slideshow3').square1({
 				caption: 'none',
 				theme: 'light'
 			});
-			
-			
+
+
 			$('.slideshow4').square1({
 				slide_duration: 100,
 				transition_time: 1000,
@@ -138,15 +135,13 @@ $('.custom_next_slide').click(function() {
 				prev_next_nav: 'none',
 				dots_nav: 'none'
 			});
-			
+
 			$('.custom_next_slide').click(function() {
 				$('.slideshow4').square1('next');
 			});
-			
+
 		});
 	</script>
 
 </body>
 </html>
-
-
