@@ -59,7 +59,7 @@ A very simple image slider that will responsively work with images of any size o
 
 ## Slideshow Options
 
-All modifications to how the slideshow runs are optional. To change the default behavior, simply add the options you want to change to the square1() function like so:
+All modifications to how the slideshow runs are optional. To change the default behavior, simply add the options you want to change to the `square1()` function like so:
 
 	$('.slideshow').square1({
 		slide_duration: 8000,
@@ -69,26 +69,25 @@ All modifications to how the slideshow runs are optional. To change the default 
 
 Here are all of the options with their default values:
 
-	width: 				$(_this).width(), 		// options: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
-	height: 			$(_this).height(),  	// options: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
-	fill_mode: 			'cover', 				// options: 'contain', 'cover', or pixel/percent value
-	background:			'#fff',					// color values
-	auto_start: 		true,					// true/false
-	start_delay: 		0, 						// value in ms
-	slide_duration: 	4000, 					// value in ms
-	transition_time: 	500, 					// value in ms
-	pause_on_hover: 	true,					// true/valse
-	theme:				'dark',					// options: 'dark', 'light'
-	prev_next_nav: 		'inside', 				// options: 'inside', 'outside', 'hover', 'none'
-	dots_nav: 			'inside', 				// options: 'inside', 'outside', 'hover', 'none'
-	caption: 			'outside', 				// options: 'inside', 'outside', 'hover', 'none'
 
+	width: 			$(_this).width(), 	// options: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
+	height: 		$(_this).height(),  	// options: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
+	fill_mode: 		'cover', 		// options: 'contain', 'cover', or pixel/percent value
+	background:		'#fff',			// color values
+	auto_start: 		true,			// true/false
+	start_delay: 		0, 			// value in ms
+	slide_duration: 	4000, 			// value in ms
+	transition_time: 	500, 			// value in ms
+	pause_on_hover: 	true,			// true/valse
+	theme:			'dark',	// options: 'dark', 'light'
+	prev_next_nav: 		'inside', 		// options: 'inside', 'outside', 'hover', 'none'
+	dots_nav: 		'inside', 		// options: 'inside', 'outside', 'hover', 'none'
+	caption: 		'outside', 		// options: 'inside', 'outside', 'hover', 'none'
+	
 	// Callback functions
-	onPlay: 			function() {},
-	onStop: 			function() {},
-	onChange: 			function() {}
-
-
+	onPlay: 		function() {},
+	onStop: 		function() {},
+	onChange: 		function() {}
 
 
 ## Slideshow Remote Control Functions
