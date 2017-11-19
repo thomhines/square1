@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.1.1
+* @version 0.1.2
 */
 
 // todo:
@@ -258,6 +258,10 @@ $.fn.square1 = function(options) {
 
 	// Update image caption
 	function update_caption() {
+		if(settings['caption'] == 'none') {
+			$('.square1_caption', _this).remove();
+			return;
+		}
 		$('.square1_caption', _this).fadeOut(settings['transition_time'], function() {
 			setTimeout(function() { // Add a delay so that new image can load before getting new caption
 				$('.square1_caption', _this).html($('.current_slide img', _this).attr('alt')).fadeIn(settings['transition_time'] - 200);
@@ -267,6 +271,10 @@ $.fn.square1 = function(options) {
 
 	// Update dots navigation position
 	function update_dots_nav() {
+		if(settings['dots_nav'] == 'none') {
+			$('.square1_dots', _this).remove();
+			return;
+		}
 		$('.square1_dots span', _this).removeClass('current');
 		$('.square1_dots span[data-image-num="' + $('.current_slide', _this).index() + '"]', _this).addClass('current');
 	}
