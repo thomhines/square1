@@ -79,7 +79,7 @@ Here are all of the options with their default values:
 	slide_duration: 	4000, 			// value in ms
 	transition_time: 	500, 			// value in ms
 	pause_on_hover: 	true,			// true/valse
-	theme:			'dark',	// options: 'dark', 'light'
+	theme:			'dark',				// options: 'dark', 'light'
 	prev_next_nav: 		'inside', 		// options: 'inside', 'outside', 'hover', 'none'
 	dots_nav: 		'inside', 		// options: 'inside', 'outside', 'hover', 'none'
 	caption: 		'outside', 		// options: 'inside', 'outside', 'hover', 'none'
