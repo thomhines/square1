@@ -34,21 +34,21 @@ $.fn.square1 = function(options) {
 		square1_interval = $(_this).data('interval');
 	} else {
 		var settings = $.extend({
-			width: 				'', 				// options: any specific measurement. Blank values will default to CSS.
-			height: 			'',
+			width: 				'', 					// options: any specific measurement. Blank values will default to whatever is set in CSS.
+			height: 				'',
 			fill_mode: 			'cover', 			// options: 'contain' or 'cover'
 			background:			'#fff',
 			auto_start: 		true,
 			start_delay: 		0,
 			slide_duration: 	4000,
 			transition_time: 	500,
-			pause_on_hover: 	true,
+			pause_on_hover: 	false,
 			theme:				'dark',
-			prev_next_nav: 		'inside', 			// options: 'inside', 'outside', 'hover', 'none'
+			prev_next_nav: 	'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			dots_nav: 			'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			caption: 			'outside', 			// options: 'inside', 'outside', 'hover', 'none'
-			onPlay: 			function() {},
-			onStop: 			function() {},
+			onPlay: 				function() {},
+			onStop: 				function() {},
 			onChange: 			function() {}
 		},options);
 
