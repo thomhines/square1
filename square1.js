@@ -43,6 +43,7 @@ $.fn.square1 = function(options) {
 			slide_duration: 	4000,
 			transition_time: 	500,
 			pause_on_hover: 	false,
+			keyboard:			true,
 			theme:				'dark',
 			prev_next_nav: 	'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			dots_nav: 			'inside', 			// options: 'inside', 'outside', 'hover', 'none'
@@ -108,6 +109,7 @@ $.fn.square1 = function(options) {
 	// CREATE SLIDESHOW ELEMENTS
 
 	_this.addClass('square1');
+	if(settings['keyboard'] && !_this.attr('tabindex')) _this.attr('tabindex', 0);
 
 	// Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
 	$(_this).children().wrap('<div class="image_wrapper" />');
@@ -148,18 +150,27 @@ $.fn.square1 = function(options) {
 
 	$('.square1_prev_image', _this).click(function() {
 		prev_image();
-		if(settings['auto_start']) reset_interval();
 	});
 
 	$('.square1_next_image', _this).click(function() {
 		next_image();
-		if(settings['auto_start']) reset_interval();
 	});
 
 	$('.square1_dots span', _this).click(function() {
 		jump_to_image($(this).data('image-num'));
-		if(settings['auto_start']) reset_interval();
-	})
+	});
+
+	$(_this).keypress(function(e) {
+		if(e.keyCode == 37 || e.keyCode == 38) prev_image();
+		else if(e.keyCode == 39 || e.keyCode == 40) next_image();
+		else return;
+
+		e.preventDefault();
+		e.stopPropagation();
+	});
+
+
+
 
 	// pause on hover
 	$(_this).on('mouseenter', '.image_wrapper', function() {
@@ -182,6 +193,7 @@ $.fn.square1 = function(options) {
 
 	// Start slideshow
 	function run_slideshow() {
+		square1_interval = 1;
 		reset_interval();
 		update_dots_nav();
 		settings['onPlay']();
@@ -195,6 +207,7 @@ $.fn.square1 = function(options) {
 
 	// Reset timer for slideshow (to prevent weird jumps when changing slides, for instance)
 	function reset_interval() {
+		if(!square1_interval) return;
 		clearInterval(square1_interval);
 		square1_interval = setInterval(next_image, settings['slide_duration'] + settings['transition_time']);
 		$(_this).data('interval', square1_interval);
@@ -228,7 +241,7 @@ $.fn.square1 = function(options) {
 	function jump_to_image(image_num) {
 
 		// Cancel all previous animations
-		$('.image_wrapper', _this).clearQueue();
+		$('.image_wrapper', _this).finish().clearQueue();
 
 		// Different fading necessary for different fill modes. Crossfading in 'cover' mode requires that both elements are visible at the same time
 		if(settings['fill_mode'] == 'cover') {
@@ -251,6 +264,7 @@ $.fn.square1 = function(options) {
 			$('.image_wrapper', _this).eq(image_num).addClass('current_slide').fadeIn(settings['transition_time']);
 		}
 
+		reset_interval();
 		update_caption();
 		update_dots_nav();
 		settings['onChange']();

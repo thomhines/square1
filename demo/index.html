@@ -2,6 +2,7 @@
 <html lang="en-us">
 <head>
 	<title>Square1 jQuery Slider</title>
+	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="theme-color" content="#333">
 	<link rel="Stylesheet" href="demo.css" type="text/css" media="all" />
@@ -17,11 +18,10 @@
 	<h2>Examples</h2>
 
 	<p>One thing that sets Square1 apart from other sliders is the ability to either have the images fill the space or be resized so that the entirety of the image is shown without cropping. The <b>fill_mode</b> property will let you control how and how much of your images people see.</p>
+	<p>The default value is "cover", which resizes and crops images to fill the slideshow fully.</p>
 
 	<code>
-$('.slideshow1').square1({
-	fill_mode: '<b>cover</b>'
-});
+$('.slideshow1').square1();
 	</code>
 
 	<div class="slideshow1">
@@ -30,6 +30,9 @@ $('.slideshow1').square1({
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 
+	<hr>
+
+	<p>The "contain" fill mode will resize each image so that it fits completely inside the slideshow.</p>
 
 	<code>
 $('.slideshow1').square1({
@@ -45,12 +48,15 @@ $('.slideshow1').square1({
 
 	<hr>
 
+	<p>You can easily control the size of the slideshow and the position/visibility of the UI.</p>
+
 	<code>
 $('.slideshow2').square1({
-	height: '30vh',
+	width: '200px',
+	height: '200px',
 	prev_next_nav: 'outside',
 	dots_nav: 'outside',
-	caption: 'inside'
+	caption: 'none'
 });
 	</code>
 
@@ -62,10 +68,11 @@ $('.slideshow2').square1({
 
 	<hr>
 
+	<p>Square1 also comes with a 'light' theme for use on darker images</p>
+
 	<code>
 $('.slideshow3').square1({
-	prev_next_nav: 'outside',
-	dots_nav: 'outside'
+	theme: 'light'
 });
 	</code>
 
@@ -77,18 +84,35 @@ $('.slideshow3').square1({
 
 	<hr>
 
+	<p>With built in events and callbacks, you can also control and respond to events in the slideshow however you want. </p>
+
 	<code>
 $('.slideshow4').square1({
-	slide_duration: 100,
-	transition_time: 1000,
 	auto_start: false,
-	prev_next_nav: 'none',
-	dots_nav: 'none'
+	onPlay: function() { $('.status').html('Playing');},
+	onStop: function() { $('.status').html('Stopped');},
+	onChange: function() { $('.status').html('Changing slides');},
 });
 
-$('.custom_next_slide').click(function() {
+
+// BUTTONS
+$('.play').click(function() {
+	$('.slideshow4').square1('play');
+});
+
+$('.stop').click(function() {
+	$('.slideshow4').square1('stop');
+});
+
+$('.next_slide').click(function() {
 	$('.slideshow4').square1('next');
 });
+
+// Jump to Slide 3
+$('.slide3').click(function() {
+	$('.slideshow4').square1(3);
+});
+
 	</code>
 
 	<div class="slideshow4">
@@ -96,7 +120,12 @@ $('.custom_next_slide').click(function() {
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
-	<button class="custom_next_slide">Next slide...</button>
+	<div class="status">Stopped</div>
+	<button class="play">Play</button>
+	<button class="stop">Stop</button>
+	<button class="next_slide">Next slide...</button>
+	<button class="slide3">Slide 3</button>
+
 
 	<footer>
 		&copy; 2016 Thom Hines | <a href="http://projects.thomhines.com/square1/LICENSE">License</a>
@@ -115,10 +144,11 @@ $('.custom_next_slide').click(function() {
 
 
 			$('.slideshow2').square1({
-				height: '60vh',
+				width: '200px',
+				height: '200px',
 				prev_next_nav: 'outside',
 				dots_nav: 'outside',
-				caption: 'inside'
+				caption: 'none'
 			});
 
 
@@ -129,17 +159,28 @@ $('.custom_next_slide').click(function() {
 
 
 			$('.slideshow4').square1({
-				slide_duration: 100,
-				transition_time: 1000,
 				auto_start: false,
-				prev_next_nav: 'none',
-				dots_nav: 'none'
+				onPlay: function() { $('.status').html('Playing');},
+				onStop: function() { $('.status').html('Stopped');},
+				onChange: function() { $('.status').html('Changing slides');},
 			});
 
-			$('.custom_next_slide').click(function() {
+			$('.play').click(function() {
+				$('.slideshow4').square1('play');
+			});
+
+			$('.stop').click(function() {
+				$('.slideshow4').square1('stop');
+			});
+
+			$('.next_slide').click(function() {
 				$('.slideshow4').square1('next');
 			});
 
+			// Jump to Slide 3
+			$('.slide3').click(function() {
+				$('.slideshow4').square1(3);
+			});
 		});
 	</script>
 
