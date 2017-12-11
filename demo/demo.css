@@ -6,6 +6,7 @@ body {
 	background: #9fffdc;
 	color: #0d0d0d;
 	font-size: 20px;
+	overflow-x: hidden;
 }
 
 * {

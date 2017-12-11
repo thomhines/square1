@@ -69,20 +69,21 @@ All modifications to how the slideshow runs are optional. To change the default 
 Here are all of the options with their default values:
 
 
-	width: 			$(_this).width(), 	// options: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
-	height: 		$(_this).height(),  	// options: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
-	fill_mode: 		'cover', 		// options: 'contain', 'cover', or pixel/percent value
-	background:		'#fff',			// color values
-	auto_start: 		true,			// true/false
-	start_delay: 		0, 			// value in ms
-	slide_duration: 	4000, 			// value in ms
-	transition_time: 	500, 			// value in ms
-	pause_on_hover: 	true,			// true/valse
-	keyboard: 		true,			// true/valse
-	theme:			'dark',			// options: 'dark', 'light'
-	prev_next_nav: 		'inside', 		// options: 'inside', 'outside', 'hover', 'none'
-	dots_nav: 		'inside', 		// options: 'inside', 'outside', 'hover', 'none'
-	caption: 		'outside', 		// options: 'inside', 'outside', 'hover', 'none'
+	width: 			$(_this).width(), 	// Sets slideshow width. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
+	height: 		$(_this).height(),  	// Sets slideshow height. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
+	fill_mode: 		'cover', 		// Determines how images fill slideshow. Values: 'contain', 'cover', or pixel/percent value
+	background:		'none',			// Set slideshow background color. Values: any CSS color or valid CSS background value
+	auto_start: 		true,			// Set whether slideshow autoplays or not. Values: true/false
+	start_delay: 		0, 			// If auto_start is true, set how long to wait before slideshow starts. Values: ms
+	slide_duration: 	4000, 			// Amount of time each slide is shown before progressing to next. Values: ms
+	transition_time: 	500, 			// Amount of time it takes to transition from one slie to next. Values: ms
+	pause_on_hover: 	true,			// Pause autoplay if user hovers mouse over slideshow. Values: true/valse
+	keyboard: 		true,			// Allow users to control slideshow with arrow keys. Will automatically add slideshows into keyboard tab order. Values: true/valse
+	gestures: 		true,			// Allow users to control slideshow with touch gestures (swipe left/right). Values: true/valse
+	theme:			'dark',			// Set color palette of slideshow UI elements. Values: 'dark', 'light'
+	prev_next_nav: 		'inside', 		// How to display (or not) the arrow nav buttons. Values: 'inside', 'outside', 'hover', 'none'
+	dots_nav: 		'inside', 		// How to display (or not) the dot nav buttons. Values: 'inside', 'outside', 'hover', 'none'
+	caption: 		'outside', 		// How to display (or not) image captions. Values: 'inside', 'outside', 'hover', 'none'
 
 	// Callback functions
 	onPlay: 		function() {},

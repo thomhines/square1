@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.1.2
+* @version 0.2.0
 */
 
 // todo:
@@ -12,10 +12,7 @@
 // Add 'slide' transition
 
 
-
-
 (function($){
-
 $.fn.square1 = function(options) {
 
 	var _this=this;
@@ -28,7 +25,7 @@ $.fn.square1 = function(options) {
 	if(_this.length < 1) return;
 
 
-	// Load settings from element data, or set up default settings and store data in element
+	// Load settings and defaults
 	if($(_this).data('settings')) {
 		var settings = $(_this).data('settings');
 		square1_interval = $(_this).data('interval');
@@ -37,13 +34,14 @@ $.fn.square1 = function(options) {
 			width: 				'', 					// options: any specific measurement. Blank values will default to whatever is set in CSS.
 			height: 				'',
 			fill_mode: 			'cover', 			// options: 'contain' or 'cover'
-			background:			'#fff',
+			background:			'none',
 			auto_start: 		true,
 			start_delay: 		0,
 			slide_duration: 	4000,
 			transition_time: 	500,
 			pause_on_hover: 	false,
 			keyboard:			true,
+			gestures:			true,
 			theme:				'dark',
 			prev_next_nav: 	'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			dots_nav: 			'inside', 			// options: 'inside', 'outside', 'hover', 'none'
@@ -58,10 +56,7 @@ $.fn.square1 = function(options) {
 
 
 
-
-
-
-	// HANDLE SLIDESHOW CONTROL METHODS
+	// Handle slideshow argument commands (eg. $('.slideshow').square1('play');)
 	if(options == 'play') {
 		run_slideshow();
 		return;
@@ -85,7 +80,7 @@ $.fn.square1 = function(options) {
 		return;
 	}
 
-	// if value is an integer, go to that image
+	// If argument value is an integer, go to that image
 	if(Math.floor(options) === options && +options === options) {
 		jump_to_image(options-1);
 		if(settings['auto_start']) reset_interval();
@@ -94,29 +89,26 @@ $.fn.square1 = function(options) {
 
 
 
-
-
-
-
-	// STYLE SLIDESHOW ELEMENTS
+	// Style slideshow elements
 	$(_this).css({
 		position: 'relative',
 		width: settings['width'],
 		height: settings['height'],
+		background: settings['background'],
 	});
 
 
-	// CREATE SLIDESHOW ELEMENTS
 
+	// Create slideshow elements
 	_this.addClass('square1');
 	if(settings['keyboard'] && !_this.attr('tabindex')) _this.attr('tabindex', 0);
 
-	// Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
-	$(_this).children().wrap('<div class="image_wrapper" />');
+	$(_this).children().wrap('<div class="image_wrapper" />'); // Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
 
 	$('.image_wrapper', _this).each(function() {
-		var img = $(this).find('img').attr('src');
-		$(this).css('background-image', 'url('+img+')');
+		if($(this).find('img').prop('currentSrc')) var img_url = $(this).find('img').prop('currentSrc');
+		else var img_url = $(this).find('img').attr('src');
+		$(this).css('background-image', 'url('+img_url+')');
 	});
 
 	// Hide all but first image, then fade them in one at a time.
@@ -146,8 +138,7 @@ $.fn.square1 = function(options) {
 
 
 
-	// EVENTS
-
+	// Events
 	$('.square1_prev_image', _this).click(function() {
 		prev_image();
 	});
@@ -160,7 +151,8 @@ $.fn.square1 = function(options) {
 		jump_to_image($(this).data('image-num'));
 	});
 
-	$(_this).keypress(function(e) {
+
+	$(_this).keydown(function(e) {
 		if(e.keyCode == 37 || e.keyCode == 38) prev_image();
 		else if(e.keyCode == 39 || e.keyCode == 40) next_image();
 		else return;
@@ -169,10 +161,35 @@ $.fn.square1 = function(options) {
 		e.stopPropagation();
 	});
 
+	if(settings['gestures']) {
+		var touchstartX, touchstartY, touchstartTime, touchMove;
+		$(_this).on('touchstart', function(e) {
+			touchstartX = e.touches[0].screenX;
+			touchstartY = e.touches[0].screenY;
+			touchstartTime = new Date();
+		});
+
+		$(_this).on('touchmove', function(e) {
+			touchMove = e;
+		});
+
+		$(_this).on('touchend', function(e) {
+			deltaX = touchMove.touches[0].screenX - touchstartX;
+			deltaY = touchMove.touches[0].screenY - touchstartY;
+			touchDuration = new Date() - touchstartTime;
+
+			if(Math.abs(deltaX / deltaY) < 2) return;
+			if(Math.abs(deltaX) < 30) return;
+			if(touchDuration > 800) return;
+
+			if(deltaX > 0) prev_image();
+			else next_image();
+		});
+	}
 
 
 
-	// pause on hover
+	// Pause on hover
 	$(_this).on('mouseenter', '.image_wrapper', function() {
 		if(settings['pause_on_hover']) stop_slideshow();
 	});
@@ -182,7 +199,7 @@ $.fn.square1 = function(options) {
 	});
 
 
-	// start slideshow (with pause at the beginning)
+	// Start slideshow (with pause at the beginning)
 	if(settings['auto_start']) setTimeout(run_slideshow, settings['start_delay']);
 	update_caption();
 
@@ -191,7 +208,6 @@ $.fn.square1 = function(options) {
 
 	// HELPER FUNCTIONS
 
-	// Start slideshow
 	function run_slideshow() {
 		square1_interval = 1;
 		reset_interval();
@@ -199,11 +215,12 @@ $.fn.square1 = function(options) {
 		settings['onPlay']();
 	}
 
-	// Stop slideshow
+
 	function stop_slideshow() {
 		clearInterval(square1_interval);
 		settings['onStop']();
 	}
+
 
 	// Reset timer for slideshow (to prevent weird jumps when changing slides, for instance)
 	function reset_interval() {
@@ -214,7 +231,6 @@ $.fn.square1 = function(options) {
 	}
 
 
-	// Move to next slide
 	function next_image() {
 		var curr_slide_index = $('.current_slide', _this).index();
 
@@ -226,7 +242,6 @@ $.fn.square1 = function(options) {
 	}
 
 
-	// Move to previous slide
 	function prev_image() {
 		var curr_slide_index = $('.current_slide', _this).index();
 
@@ -237,9 +252,9 @@ $.fn.square1 = function(options) {
 		else jump_to_image(curr_slide_index - 1);
 	}
 
-	// Jump to specific image
-	function jump_to_image(image_num) {
 
+
+	function jump_to_image(image_num) {
 		// Cancel all previous animations
 		$('.image_wrapper', _this).finish().clearQueue();
 
@@ -270,7 +285,7 @@ $.fn.square1 = function(options) {
 		settings['onChange']();
 	}
 
-	// Update image caption
+
 	function update_caption() {
 		if(settings['caption'] == 'none') {
 			$('.square1_caption', _this).remove();
@@ -283,7 +298,6 @@ $.fn.square1 = function(options) {
 		});
 	}
 
-	// Update dots navigation position
 	function update_dots_nav() {
 		if(settings['dots_nav'] == 'none') {
 			$('.square1_dots', _this).remove();
