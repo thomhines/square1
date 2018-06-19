@@ -4,12 +4,8 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.2.1
+* @version 0.3.0
 */
-
-// todo:
-// Work with velocity.js and fall back to jQuery if not available
-// Add 'slide' transition
 
 
 (function($){
@@ -34,6 +30,7 @@ $.fn.square1 = function(options) {
 			width: 				'', 					// options: any specific measurement. Blank values will default to whatever is set in CSS.
 			height: 				'',
 			fill_mode: 			'cover', 			// options: 'contain' or 'cover'
+			scale_from: 		'center center', 			// options: all values that work for CSS background-position property
 			background:			'none',
 			auto_start: 		true,
 			start_delay: 		0,
@@ -106,19 +103,28 @@ $.fn.square1 = function(options) {
 	$(_this).children().wrap('<div class="image_wrapper" />'); // Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
 
 	$('.image_wrapper', _this).each(function() {
-		if($(this).find('img').prop('currentSrc')) var img_url = $(this).find('img').prop('currentSrc');
-		else var img_url = $(this).find('img').attr('src');
+		$img = $(this).find('img');
+		if($img.prop('currentSrc')) var img_url = $img.prop('currentSrc');
+		else var img_url = $img.attr('src');
 		$(this).css('background-image', 'url('+img_url+')');
+		
+		if($img.attr('scale-from')) $(this).css('background-position', $img.attr('scale-from'));
+		else if(settings['scale_from']) $(this).css('background-position', settings['scale_from']);
 	});
+
 
 	// Hide all but first image, then fade them in one at a time.
 	$('.image_wrapper:first', _this).addClass('current_slide');
 	$('.image_wrapper:not(.current_slide)', _this).hide();
+	
 
 	$(_this).append('<div class="square1_caption"></div>');
 
 	// Add slideshow navigation controls
 	$(_this).append('<div class="square1_controls"><span class="square1_prev_image">Previous Image</span><span class="square1_next_image">Next Image</span><div class="square1_dots"></div></div>');
+
+
+	$(_this).append('<div class="square1_spinner"></div>');
 
 	// For each img, add dot to dot nav
 	var x = 0;
@@ -126,6 +132,17 @@ $.fn.square1 = function(options) {
 		$('.square1_dots', _this).append('<span data-image-num="' + x + '"></span>');
 		x++;
 	});
+	$('.square1_dots span:first-child', _this).addClass('current')
+
+	if(settings['animation'] == 'slide') {
+		_this.addClass('slide_animation');
+		$('.image_wrapper', _this).show();
+		var x = 0;
+		$('.image_wrapper', _this).each(function() {
+			$(this).css('left', x * 100 + "%");
+			x++;
+		});
+	}
 
 	// Customize behavior styles
 	$(_this).addClass('fill_mode-' + settings['fill_mode']);
@@ -258,25 +275,42 @@ $.fn.square1 = function(options) {
 		// Cancel all previous animations
 		$('.image_wrapper', _this).finish().clearQueue();
 
-		// Different fading necessary for different fill modes. Crossfading in 'cover' mode requires that both elements are visible at the same time
-		if(settings['fill_mode'] == 'cover') {
-			// If index of new image is bigger than current, fade in new image and hide current
-			if(image_num > $('.current_slide', _this).index()) {
-				$('.current_slide', _this).removeClass('current_slide');
-				$('.image_wrapper', _this).eq(image_num).addClass('current_slide').fadeIn(settings['transition_time'], function() { $('.image_wrapper:not(.current_slide)', _this).hide(); });
-			}
 
-			// Otherwise, show new image and fade out current
-			else if(image_num < $('.current_slide', _this).index()) {
-				$('.current_slide', _this).removeClass('current_slide').fadeOut(settings['transition_time']);
-				$('.image_wrapper', _this).eq(image_num).addClass('current_slide').show();
-			}
+		// Slide animation
+		if(settings['animation'] == 'slide') {
+			$('.current_slide', _this).removeClass('current_slide')
+			$('.image_wrapper', _this).eq(image_num).addClass('current_slide');
+			translate_target = image_num * -100;
+			$('.image_wrapper', _this).animate({borderspacing: translate_target}, {
+				step: function(now,fx) {
+					$(this).css('transform','translateX('+now+'%)'); 
+				},
+				duration: settings['transition_time']
+			});
 		}
 
-		// Whereas 'contain' mode looks weird when different sized images stay on the screen too long
+		// Fade animation
 		else {
-			$('.current_slide', _this).removeClass('current_slide').fadeOut(settings['transition_time']);
-			$('.image_wrapper', _this).eq(image_num).addClass('current_slide').fadeIn(settings['transition_time']);
+			// Different fading necessary for different fill modes. Crossfading in 'cover' mode requires that both elements are visible at the same time
+			if(settings['fill_mode'] == 'cover') {
+				// If index of new image is bigger than current, fade in new image and hide current
+				if(image_num > $('.current_slide', _this).index()) {
+					$('.current_slide', _this).removeClass('current_slide');
+					$('.image_wrapper', _this).eq(image_num).addClass('current_slide').fadeIn(settings['transition_time'], function() { $('.image_wrapper:not(.current_slide)', _this).hide(); });
+				}
+
+				// Otherwise, show new image and fade out current
+				else if(image_num < $('.current_slide', _this).index()) {
+					$('.current_slide', _this).removeClass('current_slide').fadeOut(settings['transition_time']);
+					$('.image_wrapper', _this).eq(image_num).addClass('current_slide').show();
+				}
+			}
+
+			// Whereas 'contain' mode looks weird when different sized images stay on the screen too long
+			else {
+				$('.current_slide', _this).removeClass('current_slide').fadeOut(settings['transition_time']);
+				$('.image_wrapper', _this).eq(image_num).addClass('current_slide').fadeIn(settings['transition_time']);
+			}
 		}
 
 		reset_interval();

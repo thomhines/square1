@@ -13,15 +13,28 @@
 
 	<h1>Square1 jQuery Slider</h1>
 
-	<h4>Download and out the documentation on <a href="https://github.com/thomhines/square1">GitHub</a>.</h4>
+	<h4>Download and check out the documentation on <a href="https://github.com/thomhines/square1">GitHub</a>.</h4>
 
 	<h2>Examples</h2>
 
-	<a href="https://github.com/thomhines/Function-Throttle"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
+	<a href="https://github.com/thomhines/square1"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
 	<p>One thing that sets Square1 apart from other sliders is the ability to either have the images fill the space or be resized so that the entirety of the image is shown without cropping. The <b>fill_mode</b> property will let you control how and how much of your images people see.</p>
 	<p>The default value is "cover", which resizes and crops images to fill the slideshow fully.</p>
 
+	<p>To create a slideshow, simply create a container element filled with images:</p>
+	<code>
+&lt;div class="slideshow"&gt;
+  &lt;img src="image1.png" alt="Caption 1"&gt;
+  &lt;img src="image2.png" alt="Caption 2"&gt;
+  &lt;img src="image3.png" alt="Caption 3"&gt;
+&lt;/div&gt;
+	</code>
+
+	<p>OR, you can include slides as HTML content elements. The `img` tag inside the slide will be used as the slide's background:</p>
+
+
+	<p>And convert it to a sqaure1 slider by calling the square1() function in your javascript:</p>
 	<code>
 $('.slideshow1').square1();
 	</code>
@@ -32,21 +45,69 @@ $('.slideshow1').square1();
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 
+
+	<hr>
+
+	<p>You can also make slides out of more complex HTML structures. Square1 will use the first `img` tag in each child element as the background of that slide.</p>
+
+	<code>
+  &lt;div class="slideshow"&gt;
+    &lt;div&gt;
+  	  &lt;img src="image1.png" alt="Caption 1"&gt;
+  	  &lt;h3&gt;Slide Title&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+  	  &lt;img src="image2.png" alt="Caption 2"&gt;
+  	  &lt;h3&gt;Slide Title&lt;/h3&gt;
+    &lt;/div&gt;
+    &lt;div&gt;
+  	  &lt;img src="image3.png" alt="Caption 3"&gt;
+  	  &lt;h3&gt;Slide Title&lt;/h3&gt;
+    &lt;/div&gt;
+  &lt;/div&gt;
+  	</code>
+
+	<div class="slideshow1_2">
+			<div>
+				<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+				<div class="text_content">
+					<h3>Slide Title #1</h3>
+					<h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</h5>
+				</div>
+			</div>
+			<div>
+				<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+				<div class="text_content">
+					<h3>Slide Title #2</h3>
+					<h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</h5>
+				</div>
+			</div>
+			<div>
+				<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+				<div class="text_content">
+					<h3>Slide Title #3</h3>
+					<h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</h5>
+				</div>
+			</div>
+		</div>
+
+
 	<hr>
 
 	<p>The "contain" fill mode will resize each image so that it fits completely inside the slideshow.</p>
 
 	<code>
 $('.slideshow1').square1({
-	fill_mode: '<b>contain</b>'
+  fill_mode: '<b>contain</b>'
 });
 	</code>
 
-	<div class="slideshow1_1">
+	<div class="slideshow1_3">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
+
 
 	<hr>
 
@@ -54,11 +115,11 @@ $('.slideshow1').square1({
 
 	<code>
 $('.slideshow2').square1({
-	width: '200px',
-	height: '200px',
-	prev_next_nav: 'outside',
-	dots_nav: 'outside',
-	caption: 'none'
+  width: '200px',
+  height: '200px',
+  prev_next_nav: 'outside',
+  dots_nav: 'outside',
+  caption: 'none'
 });
 	</code>
 
@@ -68,13 +129,31 @@ $('.slideshow2').square1({
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 
+
+	<hr>
+
+	<p>Transitions can either be set to a cross-fade (default) or a 'slide' animation like this one here:</p>
+
+	<code>
+$('.slideshow_slide').square1({
+  animation: '<b>slide</b>'
+});
+	</code>
+
+	<div class="slideshow_slide">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+
+
 	<hr>
 
 	<p>Square1 also comes with a 'light' theme for use on darker images</p>
 
 	<code>
 $('.slideshow3').square1({
-	theme: 'light'
+  theme: 'light'
 });
 	</code>
 
@@ -90,29 +169,29 @@ $('.slideshow3').square1({
 
 	<code>
 $('.slideshow4').square1({
-	auto_start: false,
-	onPlay: function() { $('.status').html('Playing');},
-	onStop: function() { $('.status').html('Stopped');},
-	onChange: function() { $('.status').html('Changing slides');},
+  auto_start: false,
+  onPlay: function() { $('.status').html('Playing');},
+  onStop: function() { $('.status').html('Stopped');},
+  onChange: function() { $('.status').html('Changing slides');},
 });
 
 
 // BUTTONS
 $('.play').click(function() {
-	$('.slideshow4').square1('play');
+  $('.slideshow4').square1('play');
 });
 
 $('.stop').click(function() {
-	$('.slideshow4').square1('stop');
+  $('.slideshow4').square1('stop');
 });
 
 $('.next_slide').click(function() {
-	$('.slideshow4').square1('next');
+  $('.slideshow4').square1('next');
 });
 
 // Jump to Slide 3
 $('.slide3').click(function() {
-	$('.slideshow4').square1(3);
+  $('.slideshow4').square1(3);
 });
 
 	</code>
@@ -136,14 +215,13 @@ $('.slide3').click(function() {
 	<script src="../square1.js"></script>
 	<script>
 		$(function() {
-			$('.slideshow1').square1({
-				fill_mode: 'cover'
-			});
+			$('.slideshow1').square1();
 
-			$('.slideshow1_1').square1({
-				fill_mode: 'contain'
-			});
+			$('.slideshow1_2').square1();
 
+			$('.slideshow1_3').square1({
+				fill_mode: 'contain',
+			});
 
 			$('.slideshow2').square1({
 				width: '200px',
@@ -153,6 +231,10 @@ $('.slide3').click(function() {
 				caption: 'none'
 			});
 
+
+			$('.slideshow_slide').square1({
+				animation: 'slide'
+			});
 
 			$('.slideshow3').square1({
 				caption: 'none',

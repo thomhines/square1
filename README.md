@@ -29,7 +29,7 @@ A very simple image slider that will responsively work with images of any size o
 		</div>
 
 
-	OR, you can include slides as HTML content elements. The <img> tag inside the slide will be used as the slide's background:
+	OR, you can include slides as HTML content elements. The `img` tag inside the slide will be used as the slide's background:
 
 		<div class="slideshow">
 			<div>
@@ -45,6 +45,13 @@ A very simple image slider that will responsively work with images of any size o
 				<h3>Slide Title</h3>
 			</div>
 		</div>
+
+
+	Additionally, if you are using the default "cover" fill mod to scale your images, you can set the point from which the image should scale from by adding the 'scale-from' attribute to your images. You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.
+	
+		<img src="image1.png alt="Caption 1" scale-from="right top">
+		<img src="image2.png alt="Caption 2" scale-from="center bottom">
+		<img src="image3.png alt="Caption 3" scale-from="100px 300px">
 
 
 	#### JS:
@@ -71,7 +78,9 @@ Here are all of the options with their default values:
 
 	width: 			$(_this).width(), 	// Sets slideshow width. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
 	height: 		$(_this).height(),  	// Sets slideshow height. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
+	animation: 		'fade', 		// Transition animation style. Values: 'fade' or 'slide'
 	fill_mode: 		'cover', 		// Determines how images fill slideshow. Values: 'contain', 'cover', or pixel/percent value
+	scale_from: 	'', 		// Values: all values that work for CSS background-position property (eg. 'right bottom', '100px 300px', etc.). Default set to 'center center' in CSS
 	background:		'none',			// Set slideshow background color. Values: any CSS color or valid CSS background value
 	auto_start: 		true,			// Set whether slideshow autoplays or not. Values: true/false
 	start_delay: 		0, 			// If auto_start is true, set how long to wait before slideshow starts. Values: ms

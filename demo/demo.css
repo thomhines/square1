@@ -64,6 +64,19 @@ hr {
 	display:none;
 }
 
+.image_wrapper .text_content {
+	position: absolute;
+	bottom: 30px;
+	left: 30px;
+	color: #fff;
+	text-shadow: 0 0 3px rgba(0,0,0,.5);
+	opacity: 1;
+}
+
+.text_content * {
+	margin: .1em 0;
+}
+
 .status {
 	position: relative;
 	padding: 1em 2em;
