@@ -47,11 +47,11 @@ A very simple image slider that will responsively work with images of any size o
 		</div>
 
 
-	Additionally, if you are using the default "cover" fill mod to scale your images, you can set the point from which the image should scale from by adding the 'scale-from' attribute to your images. You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.
+	Additionally, if you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from by adding the 'scale-from' attribute to your images. You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.
 	
 		<img src="image1.png alt="Caption 1" scale-from="right top">
 		<img src="image2.png alt="Caption 2" scale-from="center bottom">
-		<img src="image3.png alt="Caption 3" scale-from="100px 300px">
+		<img src="image3.png alt="Caption 3" scale-from="left bottom">
 
 
 	#### JS:
@@ -95,6 +95,7 @@ Here are all of the options with their default values:
 	caption: 		'outside', 		// How to display (or not) image captions. Values: 'inside', 'outside', 'hover', 'none'
 
 	// Callback functions
+	onLoad: 		function() {},
 	onPlay: 		function() {},
 	onStop: 		function() {},
 	onChange: 		function() {}

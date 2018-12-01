@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.3.0
+* @version 0.3.1
 */
 
 
@@ -43,6 +43,7 @@ $.fn.square1 = function(options) {
 			prev_next_nav: 	'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			dots_nav: 			'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			caption: 			'outside', 			// options: 'inside', 'outside', 'hover', 'none'
+			onLoad: 				function() {},
 			onPlay: 				function() {},
 			onStop: 				function() {},
 			onChange: 			function() {}
@@ -97,7 +98,7 @@ $.fn.square1 = function(options) {
 
 
 	// Create slideshow elements
-	_this.addClass('square1');
+	_this.addClass('square1 loading');
 	if(settings['keyboard'] && !_this.attr('tabindex')) _this.attr('tabindex', 0);
 
 	$(_this).children().wrap('<div class="image_wrapper" />'); // Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
@@ -106,11 +107,14 @@ $.fn.square1 = function(options) {
 		$img = $(this).find('img');
 		if($img.prop('currentSrc')) var img_url = $img.prop('currentSrc');
 		else var img_url = $img.attr('src');
-		$(this).css('background-image', 'url('+img_url+')');
-		
+		$(this).attr('background-image', img_url);
+		$img.removeAttr('src').remove(); // Remove images and src so that browser stops downloading them concurrently
 		if($img.attr('scale-from')) $(this).css('background-position', $img.attr('scale-from'));
 		else if(settings['scale_from']) $(this).css('background-position', settings['scale_from']);
 	});
+
+	// load slider images one at at time, starting with first
+	loadImage($('.image_wrapper:first-child', _this))
 
 
 	// Hide all but first image, then fade them in one at a time.
@@ -123,7 +127,7 @@ $.fn.square1 = function(options) {
 	// Add slideshow navigation controls
 	$(_this).append('<div class="square1_controls"><span class="square1_prev_image">Previous Image</span><span class="square1_next_image">Next Image</span><div class="square1_dots"></div></div>');
 
-
+	// Add loading 
 	$(_this).append('<div class="square1_spinner"></div>');
 
 	// For each img, add dot to dot nav
@@ -221,9 +225,25 @@ $.fn.square1 = function(options) {
 	update_caption();
 
 
-
-
 	// HELPER FUNCTIONS
+	// Load BG images one at a time
+	function loadImage($wrapper) {
+		img_url = $wrapper.attr('background-image');
+		$wrapper.css('background-image', "url(" + img_url + ")");
+		// Check to see when images are finished loading
+		img = new Image();
+		img.onload = function() {
+			if($wrapper.next().hasClass('image_wrapper')) {
+				loadImage($wrapper.next());
+			} 
+			else {
+				_this.attr('images_loaded', '').removeClass('loading');
+				settings['onLoad']();
+			}
+		};
+		img.src = img_url;
+		if (img.complete) img.onload();
+	}
 
 	function run_slideshow() {
 		square1_interval = 1;

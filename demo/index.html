@@ -36,7 +36,7 @@
 
 	<p>And convert it to a sqaure1 slider by calling the square1() function in your javascript:</p>
 	<code>
-$('.slideshow1').square1();
+$('.slideshow').square1();
 	</code>
 
 	<div class="slideshow1">
@@ -71,22 +71,22 @@ $('.slideshow1').square1();
 			<div>
 				<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 				<div class="text_content">
-					<h3>Slide Title #1</h3>
+					<h3>Aenean pellentesque diam</h3>
 					<h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</h5>
 				</div>
 			</div>
 			<div>
 				<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 				<div class="text_content">
-					<h3>Slide Title #2</h3>
-					<h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</h5>
+					<h3>Suspendisse ac nisl</h3>
+					<h5>Cupiditate hic ratione perferendis quas fuga, deserunt at optio...</h5>
 				</div>
 			</div>
 			<div>
 				<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 				<div class="text_content">
-					<h3>Slide Title #3</h3>
-					<h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</h5>
+					<h3>In dapibus magna sit amet mauris</h3>
+					<h5>Magnam recusandae animi...</h5>
 				</div>
 			</div>
 		</div>
@@ -143,6 +143,31 @@ $('.slideshow_slide').square1({
 	<div class="slideshow_slide">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+
+
+	<hr>
+
+	<p>Additionally, if you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from. You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.</p>
+	<code>
+$('.slideshow_scalefrom').square1({
+  scale_from: '<b>bottom right</b>'
+});
+	</code>
+
+	<p>And you can set this on an image-by-image basis by adding the 'scale-from' attribute to your images (resize your browser to see the result):</p>
+	<code>
+&lt;div class="slideshow_scalefrom"&gt;
+  &lt;img src="image1.png" alt="Caption 1" <b>scale-from="center center"</b>&gt;
+  &lt;img src="image2.png" alt="Caption 2" <b>scale-from="top right"</b>&gt;
+  &lt;img src="image3.png" alt="Caption 3"&gt;
+&lt;/div&gt;
+	</code>
+
+	<div class="slideshow_scalefrom">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/" scale-from="center center">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/" scale-from="top right">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 
@@ -234,6 +259,10 @@ $('.slide3').click(function() {
 
 			$('.slideshow_slide').square1({
 				animation: 'slide'
+			});
+
+			$('.slideshow_scalefrom').square1({
+				scale_from: 'bottom right'
 			});
 
 			$('.slideshow3').square1({

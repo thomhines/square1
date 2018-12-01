@@ -3,7 +3,7 @@ body {
 	max-width: 700px;
 	margin: 100px auto;
 	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-	background: #ffd29f;
+	background: #a8f1ac;
 	color: #0d0d0d;
 	font-size: 20px;
 	overflow-x: hidden;
@@ -66,8 +66,8 @@ hr {
 
 .image_wrapper .text_content {
 	position: absolute;
-	bottom: 30px;
-	left: 30px;
+	bottom: 50px;
+	left: 50px;
 	color: #fff;
 	text-shadow: 0 0 3px rgba(0,0,0,.5);
 	opacity: 1;
@@ -99,6 +99,11 @@ button {
 	color: #444;
 	border: 0;
 	text-transform: uppercase;
+	border-radius: 6px;
+}
+
+button:hover {
+	background: #0cada3;
 }
 
 button:disabled {
