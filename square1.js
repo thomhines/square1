@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.3.1
+* @version 0.3.2
 */
 
 
@@ -240,6 +240,7 @@ $.fn.square1 = function(options) {
 				_this.attr('images_loaded', '').removeClass('loading');
 				settings['onLoad']();
 			}
+			$wrapper.addClass('image_loaded')
 		};
 		img.src = img_url;
 		if (img.complete) img.onload();
@@ -275,7 +276,17 @@ $.fn.square1 = function(options) {
 		if(curr_slide_index == $('.image_wrapper', _this).length - 1) jump_to_image(0);
 
 		// Otherwise, show next slide and hide the current
-		else jump_to_image(curr_slide_index + 1);
+		else {
+			// check to see if next image is loaded
+			if($('.current_slide', _this).next().hasClass('image_loaded')) {
+				jump_to_image(curr_slide_index + 1);
+			}
+			else {
+				setTimeout(function() {
+					next_image()
+				}, 100)
+			}
+		}
 	}
 
 
