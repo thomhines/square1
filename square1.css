@@ -35,8 +35,8 @@
 	left:20px;
 	width:50px;
 	height:50px;
-	background: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 10 14" style="enable-background:new 0 0 10 14;" xml:space="preserve"><g><path fill="%23000" d="M0.8,6.9c0-0.3,0.1-0.5,0.3-0.8l5.5-5.4C6.8,0.5,7,0.4,7.3,0.4s0.5,0.1,0.8,0.3l0.6,0.6C8.9,1.5,9,1.8,9,2.1 S8.9,2.6,8.7,2.8L4.6,6.9L8.7,11C8.9,11.2,9,11.4,9,11.7s-0.1,0.5-0.3,0.7l-0.6,0.6c-0.2,0.2-0.5,0.3-0.8,0.3 c-0.3,0-0.5-0.1-0.8-0.3L1.1,7.7C0.9,7.4,0.8,7.2,0.8,6.9L0.8,6.9z"/></g></svg>') center no-repeat;
-	background-size: 30%;
+	background: url("data:image/svg+xml,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='15.1px' height='20.3px' viewBox='0 0 15.1 20.3' enable-background='new 0 0 15.1 20.3' xml:space='preserve'%3E%3Cfilter height='200%25' id='blur' width='200%25' x='-30%25' y='-30%25'%3E%3CfeGaussianBlur in='offOut' result='blurOut' stdDeviation='2'%3E%3C/feGaussianBlur%3E%3C/filter%3E%3Crect x='0.1' y='-0.1' fill='none' width='14.7' height='19.9'/%3E%3Cg%3E%3Cpath filter='url(%23blur)' fill='%23fff' d='M3.2,9.9c0-0.3,0.1-0.5,0.3-0.8L9,3.7c0.2-0.2,0.4-0.3,0.7-0.3s0.5,0.1,0.8,0.3l0.6,0.6c0.2,0.2,0.3,0.5,0.3,0.8 s-0.1,0.5-0.3,0.7L7,9.9l4.1,4.1c0.2,0.2,0.3,0.4,0.3,0.7s-0.1,0.5-0.3,0.7L10.5,16c-0.2,0.2-0.5,0.3-0.8,0.3S9.2,16.2,8.9,16 l-5.4-5.3C3.3,10.4,3.2,10.2,3.2,9.9L3.2,9.9z'/%3E%3Cpath fill='%23000' d='M3.2,9.9c0-0.3,0.1-0.5,0.3-0.8L9,3.7c0.2-0.2,0.4-0.3,0.7-0.3s0.5,0.1,0.8,0.3l0.6,0.6c0.2,0.2,0.3,0.5,0.3,0.8 s-0.1,0.5-0.3,0.7L7,9.9l4.1,4.1c0.2,0.2,0.3,0.4,0.3,0.7s-0.1,0.5-0.3,0.7L10.5,16c-0.2,0.2-0.5,0.3-0.8,0.3S9.2,16.2,8.9,16 l-5.4-5.3C3.3,10.4,3.2,10.2,3.2,9.9L3.2,9.9z'/%3E%3C/g%3E%3C/svg%3E") center no-repeat;
+	background-size: 40%;
 	color: rgba(255,255,255,.3);
 	cursor:pointer;
 	transform:translate(0,-50%);
@@ -249,7 +249,7 @@
 
 .theme-light .square1_prev_image, 
 .theme-light .square1_next_image {
-	background-image: url('data:image/svg+xml;utf8,<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 10 14" style="enable-background:new 0 0 10 14;" xml:space="preserve"><g><path fill="%23fff" d="M0.8,6.9c0-0.3,0.1-0.5,0.3-0.8l5.5-5.4C6.8,0.5,7,0.4,7.3,0.4s0.5,0.1,0.8,0.3l0.6,0.6C8.9,1.5,9,1.8,9,2.1 S8.9,2.6,8.7,2.8L4.6,6.9L8.7,11C8.9,11.2,9,11.4,9,11.7s-0.1,0.5-0.3,0.7l-0.6,0.6c-0.2,0.2-0.5,0.3-0.8,0.3 c-0.3,0-0.5-0.1-0.8-0.3L1.1,7.7C0.9,7.4,0.8,7.2,0.8,6.9L0.8,6.9z"/></g></svg>');
+	background-image: url("data:image/svg+xml;utf8,%3Csvg version='1.1' id='Layer_1' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink' x='0px' y='0px' width='15.1px' height='20.3px' viewBox='0 0 15.1 20.3' enable-background='new 0 0 15.1 20.3' xml:space='preserve'%3E%3Cfilter height='200%25' id='blur' width='200%25' x='-30%25' y='-30%25'%3E%3CfeGaussianBlur in='offOut' result='blurOut' stdDeviation='2'%3E%3C/feGaussianBlur%3E%3C/filter%3E%3Crect x='0.1' y='-0.1' fill='none' width='14.7' height='19.9'/%3E%3Cg%3E%3Cpath filter='url(%23blur)' fill='%23000' d='M3.2,9.9c0-0.3,0.1-0.5,0.3-0.8L9,3.7c0.2-0.2,0.4-0.3,0.7-0.3s0.5,0.1,0.8,0.3l0.6,0.6c0.2,0.2,0.3,0.5,0.3,0.8 s-0.1,0.5-0.3,0.7L7,9.9l4.1,4.1c0.2,0.2,0.3,0.4,0.3,0.7s-0.1,0.5-0.3,0.7L10.5,16c-0.2,0.2-0.5,0.3-0.8,0.3S9.2,16.2,8.9,16 l-5.4-5.3C3.3,10.4,3.2,10.2,3.2,9.9L3.2,9.9z'/%3E%3Cpath fill='%23fff' d='M3.2,9.9c0-0.3,0.1-0.5,0.3-0.8L9,3.7c0.2-0.2,0.4-0.3,0.7-0.3s0.5,0.1,0.8,0.3l0.6,0.6c0.2,0.2,0.3,0.5,0.3,0.8 s-0.1,0.5-0.3,0.7L7,9.9l4.1,4.1c0.2,0.2,0.3,0.4,0.3,0.7s-0.1,0.5-0.3,0.7L10.5,16c-0.2,0.2-0.5,0.3-0.8,0.3S9.2,16.2,8.9,16 l-5.4-5.3C3.3,10.4,3.2,10.2,3.2,9.9L3.2,9.9z'/%3E%3C/g%3E%3C/svg%3E");
 }
 
 .theme-light .square1_dots span:before {

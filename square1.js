@@ -124,8 +124,8 @@ $.fn.square1 = function(options) {
 
 	$(_this).append('<div class="square1_caption"></div>');
 
-	// Add slideshow navigation controls
-	$(_this).append('<div class="square1_controls"><span class="square1_prev_image">Previous Image</span><span class="square1_next_image">Next Image</span><div class="square1_dots"></div></div>');
+	// Add slideshow navigation controls (if there is more than 1 image)
+	if($(_this).find('.image_wrapper').length > 1) $(_this).append('<div class="square1_controls"><span class="square1_prev_image">Previous Image</span><span class="square1_next_image">Next Image</span><div class="square1_dots"></div></div>');
 
 	// Add loading 
 	$(_this).append('<div class="square1_spinner"></div>');
