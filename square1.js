@@ -151,7 +151,7 @@ $.fn.square1 = function(options) {
 
 		// Create wrap placeholders
 		$('.image_wrapper', _this).last().clone().removeClass('image_wrapper').addClass('wrap_placeholder').css({left: '-100%'}).appendTo($('.slides_container', _this))
-		$('.image_wrapper', _this).first().clone().removeClass('image_wrapper').addClass('wrap_placeholder').css({left: '300%'}).appendTo($('.slides_container', _this))
+		$('.image_wrapper', _this).first().clone().removeClass('image_wrapper').addClass('wrap_placeholder').css({left: ($('.image_wrapper', _this).length * 100) +'%'}).appendTo($('.slides_container', _this))
 	}
 
 	// Customize behavior styles
@@ -352,7 +352,7 @@ $.fn.square1 = function(options) {
 			if(reset_slide_position == "last") {
 				reset_position_timeout = setTimeout(function() {
 					$('.image_wrapper, .wrap_placeholder', _this).addClass('no_transition')
-					$('.image_wrapper, .wrap_placeholder', _this).css('transform','translateX(-200%)');
+					$('.image_wrapper, .wrap_placeholder', _this).css('transform','translateX(-'+ (last_slide * 100) +'%)');
 				}, settings['transition_time'])
 			}
 		}
