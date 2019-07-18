@@ -277,11 +277,13 @@ $.fn.square1 = function(options) {
 	}
 
 
+	var loop_slider = 0
 	function next_image() {
 		var curr_slide_index = $('.current_slide', _this).index();
 
 		// If last slide, show first slide instead
 		if(curr_slide_index >= $('.image_wrapper', _this).length - 1) {
+			loop_slider = 1;
 			jump_to_image(0);
 		}
 
@@ -304,7 +306,10 @@ $.fn.square1 = function(options) {
 		var curr_slide_index = $('.current_slide', _this).index();
 
 		// If first slide, show final slide
-		if(curr_slide_index == 0) jump_to_image($('.image_wrapper', _this).last().index());
+		if(curr_slide_index == 0) {
+			loop_slider = 1;
+			jump_to_image($('.image_wrapper', _this).last().index());
+		}
 
 		// Otherwise, show previous slide
 		else jump_to_image(curr_slide_index - 1);
@@ -327,15 +332,15 @@ $.fn.square1 = function(options) {
 			$('.image_wrapper, .wrap_placeholder', _this).removeClass('no_transition')
 
 			// Wrap animations
-			if($('.current_slide', _this).index() == last_slide && image_num == 0) {
+			if(loop_slider && image_num == 0) {
 				reset_slide_position = "first"
 				target_slide = last_slide + 1
 			}
-
-			if($('.current_slide', _this).index() == 0 && image_num == last_slide) {
+			else if(loop_slider && image_num == last_slide) {
 				reset_slide_position = "last"
 				target_slide = -1
 			}
+			loop_slider = 0
 
 			$('.current_slide', _this).removeClass('current_slide')
 			$('.image_wrapper', _this).eq(image_num).addClass('current_slide');
