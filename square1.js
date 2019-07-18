@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.3.2
+* @version 0.3.3
 */
 
 
@@ -101,7 +101,8 @@ $.fn.square1 = function(options) {
 	_this.addClass('square1 loading');
 	if(settings['keyboard'] && !_this.attr('tabindex')) _this.attr('tabindex', 0);
 
-	$(_this).children().wrap('<div class="image_wrapper" />'); // Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
+	_this.wrapInner('<div class="slides_container" />')
+	_this.find('.slides_container').children().wrap('<div class="image_wrapper" />'); // Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
 
 	$('.image_wrapper', _this).each(function() {
 		$img = $(this).find('img');
@@ -120,14 +121,14 @@ $.fn.square1 = function(options) {
 	// Hide all but first image, then fade them in one at a time.
 	$('.image_wrapper:first', _this).addClass('current_slide');
 	$('.image_wrapper:not(.current_slide)', _this).hide();
-	
+
 
 	$(_this).append('<div class="square1_caption"></div>');
 
 	// Add slideshow navigation controls (if there is more than 1 image)
 	if($(_this).find('.image_wrapper').length > 1) $(_this).append('<div class="square1_controls"><span class="square1_prev_image">Previous Image</span><span class="square1_next_image">Next Image</span><div class="square1_dots"></div></div>');
 
-	// Add loading 
+	// Add loading
 	$(_this).append('<div class="square1_spinner"></div>');
 
 	// For each img, add dot to dot nav
@@ -140,12 +141,17 @@ $.fn.square1 = function(options) {
 
 	if(settings['animation'] == 'slide') {
 		_this.addClass('slide_animation');
-		$('.image_wrapper', _this).show();
+		$('.image_wrapper, .wrap_placeholder', _this).show();
 		var x = 0;
-		$('.image_wrapper', _this).each(function() {
-			$(this).css('left', x * 100 + "%");
+
+		$('.image_wrapper, .wrap_placeholder', _this).each(function() {
+			$(this).css({left: x * 100 + "%", transitionDuration: settings['transition_time'] + 'ms'});
 			x++;
 		});
+
+		// Create wrap placeholders
+		$('.image_wrapper', _this).last().clone().removeClass('image_wrapper').addClass('wrap_placeholder').css({left: '-100%'}).appendTo($('.slides_container', _this))
+		$('.image_wrapper', _this).first().clone().removeClass('image_wrapper').addClass('wrap_placeholder').css({left: '300%'}).appendTo($('.slides_container', _this))
 	}
 
 	// Customize behavior styles
@@ -235,7 +241,7 @@ $.fn.square1 = function(options) {
 		img.onload = function() {
 			if($wrapper.next().hasClass('image_wrapper')) {
 				loadImage($wrapper.next());
-			} 
+			}
 			else {
 				_this.attr('images_loaded', '').removeClass('loading');
 				settings['onLoad']();
@@ -244,6 +250,8 @@ $.fn.square1 = function(options) {
 		};
 		img.src = img_url;
 		if (img.complete) img.onload();
+
+		$('.wrap_placeholder[background-image="'+img_url+'"]', _this).css('background-image', "url(" + img_url + ")");
 	}
 
 	function run_slideshow() {
@@ -273,7 +281,9 @@ $.fn.square1 = function(options) {
 		var curr_slide_index = $('.current_slide', _this).index();
 
 		// If last slide, show first slide instead
-		if(curr_slide_index == $('.image_wrapper', _this).length - 1) jump_to_image(0);
+		if(curr_slide_index >= $('.image_wrapper', _this).length - 1) {
+			jump_to_image(0);
+		}
 
 		// Otherwise, show next slide and hide the current
 		else {
@@ -302,22 +312,49 @@ $.fn.square1 = function(options) {
 
 
 
+	var reset_position_timeout;
 	function jump_to_image(image_num) {
 		// Cancel all previous animations
 		$('.image_wrapper', _this).finish().clearQueue();
 
-
 		// Slide animation
 		if(settings['animation'] == 'slide') {
+			reset_slide_position = false;
+			target_slide = image_num
+			last_slide = $('.image_wrapper', _this).last().index()
+			clearTimeout(reset_position_timeout)
+
+			$('.image_wrapper, .wrap_placeholder', _this).removeClass('no_transition')
+
+			// Wrap animations
+			if($('.current_slide', _this).index() == last_slide && image_num == 0) {
+				reset_slide_position = "first"
+				target_slide = last_slide + 1
+			}
+
+			if($('.current_slide', _this).index() == 0 && image_num == last_slide) {
+				reset_slide_position = "last"
+				target_slide = -1
+			}
+
 			$('.current_slide', _this).removeClass('current_slide')
 			$('.image_wrapper', _this).eq(image_num).addClass('current_slide');
-			translate_target = image_num * -100;
-			$('.image_wrapper', _this).animate({borderspacing: translate_target}, {
-				step: function(now,fx) {
-					$(this).css('transform','translateX('+now+'%)'); 
-				},
-				duration: settings['transition_time']
-			});
+			translate_target = target_slide * -100;
+			$('.image_wrapper, .wrap_placeholder', _this).css('transform','translateX('+translate_target+'%)')
+
+			if(reset_slide_position == "first") {
+				reset_position_timeout = setTimeout(function() {
+					$('.image_wrapper, .wrap_placeholder', _this).addClass('no_transition')
+					$('.image_wrapper, .wrap_placeholder', _this).css('transform','translateX(0%)');
+				}, settings['transition_time'])
+			}
+
+			if(reset_slide_position == "last") {
+				reset_position_timeout = setTimeout(function() {
+					$('.image_wrapper, .wrap_placeholder', _this).addClass('no_transition')
+					$('.image_wrapper, .wrap_placeholder', _this).css('transform','translateX(-200%)');
+				}, settings['transition_time'])
+			}
 		}
 
 		// Fade animation
