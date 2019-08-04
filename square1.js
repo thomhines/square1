@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.3.3
+* @version 0.4.0
 */
 
 
@@ -39,6 +39,7 @@ $.fn.square1 = function(options) {
 			pause_on_hover: 	false,
 			keyboard:			true,
 			gestures:			true,
+			lazy_load:			false,
 			theme:				'dark',
 			prev_next_nav: 	'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			dots_nav: 			'inside', 			// options: 'inside', 'outside', 'hover', 'none'
@@ -104,15 +105,15 @@ $.fn.square1 = function(options) {
 	_this.wrapInner('<div class="slides_container" />')
 	_this.find('.slides_container').children().wrap('<div class="image_wrapper" />'); // Surround all direct decendents with <div> (so that this can work with images or other elements, such as <a> or <ul>)
 
-	$('.image_wrapper', _this).each(function() {
-		$img = $(this).find('img');
-		if($img.prop('currentSrc')) var img_url = $img.prop('currentSrc');
-		else var img_url = $img.attr('src');
-		$(this).attr('background-image', img_url);
-		$img.removeAttr('src').remove(); // Remove images and src so that browser stops downloading them concurrently
-		if($img.attr('scale-from')) $(this).css('background-position', $img.attr('scale-from'));
-		else if(settings['scale_from']) $(this).css('background-position', settings['scale_from']);
-	});
+	// $('.image_wrapper', _this).each(function() {
+	// 	$img = $(this).find('img');
+	// 	if($img.prop('currentSrc')) var img_url = $img.prop('currentSrc');
+	// 	else var img_url = $img.attr('src');
+	// 	$(this).attr('background-image', img_url);
+	// 	$img.removeAttr('src').remove(); // Remove images and src so that browser stops downloading them concurrently
+	// 	if($img.attr('scale-from')) $(this).css('background-position', $img.attr('scale-from'));
+	// 	else if(settings['scale_from']) $(this).css('background-position', settings['scale_from']);
+	// });
 
 	// load slider images one at at time, starting with first
 	loadImage($('.image_wrapper:first-child', _this))
@@ -234,13 +235,27 @@ $.fn.square1 = function(options) {
 	// HELPER FUNCTIONS
 	// Load BG images one at a time
 	function loadImage($wrapper) {
-		img_url = $wrapper.attr('background-image');
+
+		var $img = $wrapper.find('img')
+		if($img.attr('data-src') && ! $img.attr('src')) $img.show().attr('src', $img.attr('data-src')).attr('srcset', $img.attr('data-srcset'))
+		var img_url = $img.attr('src');
+
+		// Check back again if img has srcset and currentSrc isn't available
+		if($img.attr('srcset')) {
+			if($img.prop('currentSrc')) img_url = $img.prop('currentSrc');
+			else {
+				setTimeout(function() { loadImage($wrapper) }, 100)
+				return
+			}
+		}
+
 		$wrapper.css('background-image', "url(" + img_url + ")");
-		// Check to see when images are finished loading
+
+		// Load images sequentially and fire event when images are finished loading
 		img = new Image();
 		img.onload = function() {
 			if($wrapper.next().hasClass('image_wrapper')) {
-				loadImage($wrapper.next());
+				if(!settings['lazy_load']) loadImage($wrapper.next());
 			}
 			else {
 				_this.attr('images_loaded', '').removeClass('loading');
@@ -250,6 +265,7 @@ $.fn.square1 = function(options) {
 		};
 		img.src = img_url;
 		if (img.complete) img.onload();
+		$img.hide()
 
 		$('.wrap_placeholder[background-image="'+img_url+'"]', _this).css('background-image', "url(" + img_url + ")");
 	}
@@ -280,6 +296,7 @@ $.fn.square1 = function(options) {
 	var loop_slider = 0
 	function next_image() {
 		var curr_slide_index = $('.current_slide', _this).index();
+		// if(settings['lazy_load'] && $('.current_slide', _this).next().hasClass('image_wrapper') && !$('.current_slide', _this).next().hasClass('image_loaded')) loadImage($('.current_slide', _this).next());
 
 		// If last slide, show first slide instead
 		if(curr_slide_index >= $('.image_wrapper', _this).length - 1) {
@@ -290,14 +307,14 @@ $.fn.square1 = function(options) {
 		// Otherwise, show next slide and hide the current
 		else {
 			// check to see if next image is loaded
-			if($('.current_slide', _this).next().hasClass('image_loaded')) {
+			// if($('.current_slide', _this).next().hasClass('image_loaded')) {
 				jump_to_image(curr_slide_index + 1);
-			}
-			else {
-				setTimeout(function() {
-					next_image()
-				}, 100)
-			}
+			// }
+			// else {
+			// 	setTimeout(function() {
+			// 		next_image()
+			// 	}, 100)
+			// }
 		}
 	}
 
@@ -319,6 +336,13 @@ $.fn.square1 = function(options) {
 
 	var reset_position_timeout;
 	function jump_to_image(image_num) {
+
+		if(!$('.image_wrapper', _this).eq(image_num).hasClass('image_loaded')) {
+			loadImage($('.image_wrapper', _this).eq(image_num))
+			setTimeout(function() { jump_to_image(image_num) }, 100)
+			return
+		}
+
 		// Cancel all previous animations
 		$('.image_wrapper', _this).finish().clearQueue();
 

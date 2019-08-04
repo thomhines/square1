@@ -17,12 +17,26 @@
 
 	<h2>Examples</h2>
 
+	<p>
+		<a href="#basic">Basic Slider</a><br>
+		<a href="#options_formatting">Slider Options & Formatting</a><br>
+		<a href="#html_slider">Slider w/ HTML Elements</a><br>
+		<a href="#sizing_positioning">Image Sizing & Positioning</a><br>
+		<a href="#events">Events</a><br>
+		<a href="#responsive_images">Responsive Images</a><br>
+		<a href="#lazy_loading">Sequential and Lazy Loading</a><br>
+	</p>
+
+	<hr id="basic">
+
+	<h3>Basic Slider</h3>
+
 	<a href="https://github.com/thomhines/square1"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
 	<p>One thing that sets Square1 apart from other sliders is the ability to either have the images fill the space or be resized so that the entirety of the image is shown without cropping. The <b>fill_mode</b> property will let you control how and how much of your images people see.</p>
 	<p>The default value is "cover", which resizes and crops images to fill the slideshow fully.</p>
 
-	<p>To create a slideshow, simply create a container element filled with images:</p>
+	<p>To create a slideshow, simply create a container element filled with images in your HTML:</p>
 	<code>
 &lt;div class="slideshow"&gt;
   &lt;img src="image1.png" alt="Caption 1"&gt;
@@ -31,15 +45,37 @@
 &lt;/div&gt;
 	</code>
 
-	<p>OR, you can include slides as HTML content elements. The `img` tag inside the slide will be used as the slide's background:</p>
-
-
-	<p>And convert it to a sqaure1 slider by calling the square1() function in your javascript:</p>
+	<p>... And convert it to a sqaure1 slider by calling the square1() function in your javascript:</p>
 	<code>
 $('.slideshow').square1();
 	</code>
 
-	<div class="slideshow1">
+	<div class="slideshow">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+
+
+
+
+	<hr id="options_formatting">
+
+	<h3>Slider Options & Formatting</h3>
+
+	<p>You can easily control the size of the slideshow and the position/visibility of the UI.</p>
+
+	<code>
+$('.slideshow_formatting').square1({
+  width: '200px',
+  height: '200px',
+  prev_next_nav: 'outside',
+  dots_nav: 'outside',
+  caption: 'none'
+});
+	</code>
+
+	<div class="slideshow_formatting">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
@@ -47,6 +83,45 @@ $('.slideshow').square1();
 
 
 	<hr>
+
+	<p>Transitions can either be set to a cross-fade (default) or a 'slide' animation like this one here:</p>
+
+	<code>
+$('.slideshow_slide').square1({
+  animation: '<b>slide</b>'
+});
+	</code>
+
+	<div class="slideshow_slide">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+
+
+
+	<hr>
+
+	<p>Square1 also comes with a 'light' theme for use on darker images and sites</p>
+
+	<code>
+$('.slideshow_light').square1({
+  theme: 'light'
+});
+	</code>
+
+	<div class="slideshow_light">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+
+
+
+	<hr id="html_slider">
+
+
+	<h3>Slider w/ HTML Elements</h3>
 
 	<p>You can also make slides out of more complex HTML structures. Square1 will use the first `img` tag in each child element as the background of that slide.</p>
 
@@ -67,7 +142,7 @@ $('.slideshow').square1();
   &lt;/div&gt;
   	</code>
 
-	<div class="slideshow1_2">
+	<div class="slideshow_html">
 			<div>
 				<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 				<div class="text_content">
@@ -92,17 +167,20 @@ $('.slideshow').square1();
 		</div>
 
 
-	<hr>
+	<hr id="sizing_positioning">
 
-	<p>The "contain" fill mode will resize each image so that it fits completely inside the slideshow.</p>
+
+	<h3>Image Sizing and Positioning</h3>
+
+	<p>By default, square1 will size and crop images so that they "cover" the entire slider area. Using the "contain" fill mode will resize each image so that it fits completely inside the slideshow.</p>
 
 	<code>
-$('.slideshow1').square1({
+$('.slideshow_contain').square1({
   fill_mode: '<b>contain</b>'
 });
 	</code>
 
-	<div class="slideshow1_3">
+	<div class="slideshow_contain">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
@@ -111,43 +189,6 @@ $('.slideshow1').square1({
 
 	<hr>
 
-	<p>You can easily control the size of the slideshow and the position/visibility of the UI.</p>
-
-	<code>
-$('.slideshow2').square1({
-  width: '200px',
-  height: '200px',
-  prev_next_nav: 'outside',
-  dots_nav: 'outside',
-  caption: 'none'
-});
-	</code>
-
-	<div class="slideshow2">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
-	</div>
-
-
-	<hr>
-
-	<p>Transitions can either be set to a cross-fade (default) or a 'slide' animation like this one here:</p>
-
-	<code>
-$('.slideshow_slide').square1({
-  animation: '<b>slide</b>'
-});
-	</code>
-
-	<div class="slideshow_slide">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
-	</div>
-
-
-	<hr>
 
 	<p>Additionally, if you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from. You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.</p>
 	<code>
@@ -172,28 +213,14 @@ $('.slideshow_scalefrom').square1({
 	</div>
 
 
-	<hr>
+	<hr id="events">
 
-	<p>Square1 also comes with a 'light' theme for use on darker images</p>
-
-	<code>
-$('.slideshow3').square1({
-  theme: 'light'
-});
-	</code>
-
-	<div class="slideshow3">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
-	</div>
-
-	<hr>
+	<h3>Events</h3>
 
 	<p>With built in events and callbacks, you can also control and respond to events in the slideshow however you want. </p>
 
 	<code>
-$('.slideshow4').square1({
+$('.slideshow_events').square1({
   auto_start: false,
   onPlay: function() { $('.status').html('Playing');},
   onStop: function() { $('.status').html('Stopped');},
@@ -203,25 +230,25 @@ $('.slideshow4').square1({
 
 // BUTTONS
 $('.play').click(function() {
-  $('.slideshow4').square1('play');
+  $('.slideshow_events').square1('play');
 });
 
 $('.stop').click(function() {
-  $('.slideshow4').square1('stop');
+  $('.slideshow_events').square1('stop');
 });
 
 $('.next_slide').click(function() {
-  $('.slideshow4').square1('next');
+  $('.slideshow_events').square1('next');
 });
 
 // Jump to Slide 3
 $('.slide3').click(function() {
-  $('.slideshow4').square1(3);
+  $('.slideshow_events').square1(3);
 });
 
 	</code>
 
-	<div class="slideshow4">
+	<div class="slideshow_events">
 		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
@@ -233,6 +260,47 @@ $('.slide3').click(function() {
 	<button class="slide3">Slide 3</button>
 
 
+	<hr id="responsive_images">
+
+	<h3>Responsive Images</h3>
+
+	<p>Square1 supports <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">srcset</a> right out of the box. Just create your various image sizes, add 'srcset' (and the optional 'size') attributes to your img tags and square1 will load the appropriately sized images as needed.</p>
+
+	<code>
+&lt;div class="slideshow_srcset"&gt;
+  &lt;img src="image1.png"
+	<b>srcset="image1-sm.jpg 400w, image1-md.jpg 800w, image1.jpg 1200w"</b>
+	<b>sizes="(max-width: 500px) 400px, (max-width: 1200px) 800px, 1200px"</b>
+	alt="Caption 1"&gt;
+  ...
+&lt;/div&gt;
+	</code>
+
+
+	<hr id="lazy_loading">
+
+	<h3>Sequential and Lazy Loading</h3>
+
+	<p>Square1 will try to automatically stagger the downloading of images to make pages load faster and start playing sooner. To prevent the browser from trying to fetch images too early, add 'data-' before any 'src' and 'srcset' attributes on any images you want delayed. Square1 will convert the attributes at the appropriate time.</p>
+
+	<code>
+&lt;div class="slideshow"&gt;
+  &lt;img src="image1.png" srcset="image1-sm.jpg 400w" alt="Caption 1"&gt;
+  &lt;img <b>data-src</b>="image2.png" <b>data-srcset</b>="image2-sm.jpg 400w" alt="Caption 2"&gt;
+  &lt;img <b>data-src</b>="image3.png" <b>data-srcset</b>="image3-sm.jpg 400w" alt="Caption 3"&gt;
+&lt;/div&gt;
+	</code>
+
+	<p>In cases where there are a lot of big images or complex animations, you might want to delay image loading even more. You can tell square1 to load each image only when it's needed ("lazy loading") by setting the 'lazy_load' option to true.</p>
+
+	<code>
+$('.slideshow_srcset').square1({
+  <b>lazy_load: true</b>
+});
+	</code>
+
+	<p><b>Note</b>: Make sure to add the 'data-' prefix to the 'src' and 'srcset' attributes as mentioned above.</p>
+
 	<footer>
 		&copy; 2016 Thom Hines | <a href="http://projects.thomhines.com/square1/LICENSE">License</a>
 
@@ -240,15 +308,15 @@ $('.slide3').click(function() {
 	<script src="../square1.js"></script>
 	<script>
 		$(function() {
-			$('.slideshow1').square1();
+			$('.slideshow').square1();
 
-			$('.slideshow1_2').square1();
+			$('.slideshow_html').square1();
 
-			$('.slideshow1_3').square1({
+			$('.slideshow_contain').square1({
 				fill_mode: 'contain',
 			});
 
-			$('.slideshow2').square1({
+			$('.slideshow_formatting').square1({
 				width: '200px',
 				height: '200px',
 				prev_next_nav: 'outside',
@@ -265,13 +333,13 @@ $('.slide3').click(function() {
 				scale_from: 'bottom right'
 			});
 
-			$('.slideshow3').square1({
+			$('.slideshow_light').square1({
 				caption: 'none',
 				theme: 'light'
 			});
 
 
-			$('.slideshow4').square1({
+			$('.slideshow_events').square1({
 				auto_start: false,
 				onPlay: function() { $('.status').html('Playing');},
 				onStop: function() { $('.status').html('Stopped');},
@@ -279,20 +347,20 @@ $('.slide3').click(function() {
 			});
 
 			$('.play').click(function() {
-				$('.slideshow4').square1('play');
+				$('.slideshow_events').square1('play');
 			});
 
 			$('.stop').click(function() {
-				$('.slideshow4').square1('stop');
+				$('.slideshow_events').square1('stop');
 			});
 
 			$('.next_slide').click(function() {
-				$('.slideshow4').square1('next');
+				$('.slideshow_events').square1('next');
 			});
 
 			// Jump to Slide 3
 			$('.slide3').click(function() {
-				$('.slideshow4').square1(3);
+				$('.slideshow_events').square1(3);
 			});
 		});
 	</script>
