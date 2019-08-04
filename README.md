@@ -82,7 +82,7 @@ Here are all of the options with their default values:
 	height: 		$(_this).height(),  	// Sets slideshow height. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
 	animation: 		'fade', 		// Transition animation style. Values: 'fade' or 'slide'
 	fill_mode: 		'cover', 		// Determines how images fill slideshow. Values: 'contain', 'cover', or pixel/percent value
-	scale_from: 		'center', 	// Values: all values that work for CSS background-position property (eg. 'right bottom', '100px 300px', etc.). Default set to 'center center' in CSS
+	scale_from: 		'center', 		// Values: all values that work for CSS background-position property (eg. 'right bottom', '100px 300px', etc.). Default set to 'center center' in CSS
 	background:		'none',			// Set slideshow background color. Values: any CSS color or valid CSS background value
 	auto_start: 		true,			// Set whether slideshow autoplays or not. Values: true/false
 	start_delay: 		0, 			// If auto_start is true, set how long to wait before slideshow starts. Values: ms
@@ -98,10 +98,10 @@ Here are all of the options with their default values:
 	caption: 		'outside', 		// How to display (or not) image captions. Values: 'inside', 'outside', 'hover', 'none'
 
 	// Callback functions
-	onLoad: 		function() {},
-	onPlay: 		function() {},
-	onStop: 		function() {},
-	onChange: 		function() {}
+	onLoad: 		function() {},	// Triggered when slideshow has completed loading
+	onPlay: 		function() {},	// Triggered when slideshow starts playing
+	onStop: 		function() {},	// Triggered when slideshow stops playing
+	onChange: 		function() {}	// Triggered after slide has changed
 
 
 ## Slideshow Remote Control Functions
