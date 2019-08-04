@@ -24,8 +24,8 @@ A very simple image slider that will responsively work with images of any size o
 
 		<div class="slideshow">
 			<img src="image1.png" alt="Caption 1">
-			<img src="image2.png" alt="Caption 2">
-			<img src="image3.png" alt="Caption 3">
+			<img data-src="image2.png" alt="Caption 2">
+			<img data-src="image3.png" alt="Caption 3">
 		</div>
 
 	*Note*: Appending **data-** to the 'src' and 'srcset' attributes will enable async loading (eg. data-src="image1.png").
@@ -82,7 +82,7 @@ Here are all of the options with their default values:
 	height: 		$(_this).height(),  	// Sets slideshow height. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
 	animation: 		'fade', 		// Transition animation style. Values: 'fade' or 'slide'
 	fill_mode: 		'cover', 		// Determines how images fill slideshow. Values: 'contain', 'cover', or pixel/percent value
-	scale_from: 	'', 		// Values: all values that work for CSS background-position property (eg. 'right bottom', '100px 300px', etc.). Default set to 'center center' in CSS
+	scale_from: 		'', 		// Values: all values that work for CSS background-position property (eg. 'right bottom', '100px 300px', etc.). Default set to 'center center' in CSS
 	background:		'none',			// Set slideshow background color. Values: any CSS color or valid CSS background value
 	auto_start: 		true,			// Set whether slideshow autoplays or not. Values: true/false
 	start_delay: 		0, 			// If auto_start is true, set how long to wait before slideshow starts. Values: ms
