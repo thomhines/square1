@@ -13,7 +13,6 @@ $.fn.square1 = function(options) {
 
 	var _this=this;
 	var settings;
-	var square1_interval;
 	var slideshow_hover = false;
 
 

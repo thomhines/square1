@@ -98,10 +98,10 @@ Here are all of the options with their default values:
 	caption: 		'outside', 		// How to display (or not) image captions. Values: 'inside', 'outside', 'hover', 'none'
 
 	// Callback functions
-	onLoad: 		function() {},	// Triggered when slideshow has completed loading
-	onPlay: 		function() {},	// Triggered when slideshow starts playing
-	onStop: 		function() {},	// Triggered when slideshow stops playing
-	onChange: 		function() {}	// Triggered after slide has changed
+	onLoad: 		function() {},		// Triggered when slideshow has completed loading
+	onPlay: 		function() {},		// Triggered when slideshow starts playing
+	onStop: 		function() {},		// Triggered when slideshow stops playing
+	onChange: 		function() {}		// Triggered after slide has changed
 
 
 ## Slideshow Remote Control Functions
