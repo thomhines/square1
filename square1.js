@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.4.0
+* @version 0.4.1
 */
 
 
@@ -14,6 +14,7 @@ $.fn.square1 = function(options) {
 	var _this=this;
 	var settings;
 	var slideshow_hover = false;
+	var square1_interval = null;
 
 
 	// Stop plugin execution if selected elements aren't present on page
