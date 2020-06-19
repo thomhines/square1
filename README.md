@@ -9,7 +9,7 @@ A very simple image slider that will responsively work with images of any size o
 
 1. Link to jQuery
 
-		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 
 2. Link to the Square1 JS and CSS
 
@@ -125,7 +125,13 @@ You can also control any Square1 slideshow remotely via JS:
 
 
 
+## Other Settings
 
+If you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from (ie. which corner of the image will be pinned in place if parts of the image need to be scaled and cropped). You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.
+
+And you can set this on an image-by-image basis by adding the 'scale-from' attribute to your images (resize your browser to see the result):
+
+  	<img src="image1.png" alt="Caption 1" scale-from="top left" scale-from-mobile="bottom center">
 
 
 ## Thanks

@@ -89,6 +89,11 @@ hr {
 	margin: .1em 0;
 }
 
+.example_images img {
+	max-width: 33%;
+	max-height: 250px;
+}
+
 .status {
 	position: relative;
 	padding: 1em 2em;

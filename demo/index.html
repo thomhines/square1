@@ -21,7 +21,7 @@
 		<a href="#basic">Basic Slider</a><br>
 		<a href="#options_formatting">Slider Options & Formatting</a><br>
 		<a href="#html_slider">Slider w/ HTML Elements</a><br>
-		<a href="#sizing_positioning">Image Sizing & Positioning</a><br>
+		<a href="#positioning">Image Positioning</a><br>
 		<a href="#events">Events</a><br>
 		<a href="#responsive_images">Responsive Images</a><br>
 		<a href="#lazy_loading">Sequential and Lazy Loading</a><br>
@@ -33,8 +33,17 @@
 
 	<a href="https://github.com/thomhines/square1"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
 
-	<p>One thing that sets Square1 apart from other sliders is the ability to either have the images fill the space or be resized so that the entirety of the image is shown without cropping. The <b>fill_mode</b> property will let you control how and how much of your images people see.</p>
-	<p>The default value is "cover", which resizes and crops images to fill the slideshow fully.</p>
+	<p>One thing that sets Square1 apart from other sliders is its ability to cleanly present images of any size or shape.</p>
+
+
+	<p>Here are the images used in all of the sliders on this page. Notice that they are a mix of landscape and portrait orientations:</p>
+	<div class="example_images">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
+
+	<p> The <b>fill_mode</b> property will let you control how and how much of your images people see. The default value is "cover", which resizes and crops images to make sure the slider is always filled.</p>
 
 	<p>To create a slideshow, simply create a container element filled with images in your HTML:</p>
 	<code>
@@ -56,7 +65,21 @@ $('.slideshow').square1();
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
 
+	<br><br>
 
+	<p>The alternative <b>fill_mode</b> option is "contain," will resize each image so that it fits completely inside the slideshow.</p>
+
+	<code>
+$('.slideshow_contain').square1({
+  fill_mode: '<b>contain</b>'
+});
+	</code>
+
+	<div class="slideshow_contain">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
+		<img data-src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
+		<img data-src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
+	</div>
 
 
 	<hr id="options_formatting">
@@ -167,30 +190,14 @@ $('.slideshow_light').square1({
 		</div>
 
 
-	<hr id="sizing_positioning">
+
+	<hr id="positioning">
 
 
-	<h3>Image Sizing and Positioning</h3>
 
-	<p>By default, square1 will size and crop images so that they "cover" the entire slider area. Using the "contain" fill mode will resize each image so that it fits completely inside the slideshow.</p>
+	<h3>Image Positioning</h3>
 
-	<code>
-$('.slideshow_contain').square1({
-  fill_mode: '<b>contain</b>'
-});
-	</code>
-
-	<div class="slideshow_contain">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
-	</div>
-
-
-	<hr>
-
-
-	<p>Additionally, if you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from. You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.</p>
+	<p>If you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from (ie. which corner of the image will be pinned in place if parts of the image need to be scaled and cropped). You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.</p>
 	<code>
 $('.slideshow_scalefrom').square1({
   scale_from: '<b>bottom right</b>'
@@ -200,14 +207,14 @@ $('.slideshow_scalefrom').square1({
 	<p>And you can set this on an image-by-image basis by adding the 'scale-from' attribute to your images (resize your browser to see the result):</p>
 	<code>
 &lt;div class="slideshow_scalefrom"&gt;
-  &lt;img src="image1.png" alt="Caption 1" <b>scale-from="center center"</b>&gt;
+  &lt;img src="image1.png" alt="Caption 1" <b>scale-from="bottom left"</b>&gt;
   &lt;img src="image2.png" alt="Caption 2" <b>scale-from="top right"</b>&gt;
   &lt;img src="image3.png" alt="Caption 3"&gt;
 &lt;/div&gt;
 	</code>
 
 	<div class="slideshow_scalefrom">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/" scale-from="center center">
+		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from http://isorepublic.com/" scale-from="bottom left">
 		<img src="image2.jpg" alt="Napoli Coastline. Image from http://isorepublic.com/" scale-from="top right">
 		<img src="image3.jpg" alt="Portland Rock. Image from http://isorepublic.com/">
 	</div>
@@ -291,7 +298,7 @@ $('.slide3').click(function() {
 &lt;/div&gt;
 	</code>
 
-	<p>In cases where there are a lot of big images or complex animations, you might want to delay image loading even more. You can tell square1 to load each image only when it's needed ("lazy loading") by setting the 'lazy_load' option to true.</p>
+	<p>In cases where there are a lot of big images or complex animations, you might want to delay image loading even more. You can tell square1 to load each image only when it's needed ("lazy loading") by setting the <b>'lazy_load'</b> option to true.</p>
 
 	<code>
 $('.slideshow_srcset').square1({
@@ -299,12 +306,12 @@ $('.slideshow_srcset').square1({
 });
 	</code>
 
-	<p><b>Note</b>: Make sure to add the 'data-' prefix to the 'src' and 'srcset' attributes as mentioned above.</p>
+	<p><b>Note</b>: You must add the <b>'data-'</b> prefix to the 'src' and 'srcset' attributes as mentioned above for lazy or sequential loading to work.</p>
 
 	<footer>
 		&copy; 2016 Thom Hines | <a href="http://projects.thomhines.com/square1/LICENSE">License</a>
 
-	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="../square1.js"></script>
 	<script>
 		$(function() {
@@ -313,7 +320,7 @@ $('.slideshow_srcset').square1({
 			$('.slideshow_html').square1();
 
 			$('.slideshow_contain').square1({
-				fill_mode: 'contain',
+				fill_mode: 'contain'
 			});
 
 			$('.slideshow_formatting').square1({
@@ -326,7 +333,8 @@ $('.slideshow_srcset').square1({
 
 
 			$('.slideshow_slide').square1({
-				animation: 'slide'
+				animation: 'slide',
+				// transition_time: 5000,
 			});
 
 			$('.slideshow_scalefrom').square1({
@@ -340,9 +348,10 @@ $('.slideshow_srcset').square1({
 
 
 			$('.slideshow_events').square1({
+				slide_duration: 2000,
 				auto_start: false,
 				onPlay: function() { $('.status').html('Playing');},
-				onStop: function() { $('.status').html('Stopped');},
+				onStop: function() { console.log('stop event'); $('.status').html('Stopped');},
 				onChange: function() { $('.status').html('Changing slides');},
 			});
 
