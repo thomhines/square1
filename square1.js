@@ -4,13 +4,16 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.5.0
+* @version 0.5.1
 */
 
 filter_gallery = '';
 
 (function($){
 $.fn.square1 = function(options) {
+
+	// Stop plugin execution if selected elements aren't present on page
+	if(this.length < 1) return;
 
 	var $this = this;
 	var _this = $(this)[0];
@@ -19,9 +22,6 @@ $.fn.square1 = function(options) {
 	_this.reset_position_timeout = null;
 	var load_image_timeout = null;
 	var slideshow_hover = false;
-
-	// Stop plugin execution if selected elements aren't present on page
-	if($this.length < 1) return;
 
 	// Initialize settings and defaults
 	if(!_this.settings) {
