@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.5.2
+* @version 0.5.3
 */
 
 filter_gallery = '';
@@ -28,18 +28,19 @@ $.fn.square1 = function(options) {
 		_this.settings = $.extend({
 			width: 				'', 				// options: any CSS measurement. Blank values will default to whatever is set in CSS, or 'auto' if no CSS is set.
 			height: 			'',					// options: any CSS measurement. Blank values will default to whatever is set in CSS, or the height of the first image if no CSS is set.
+			animation:			'fade',				// options: 'fade' or 'slide'
 			fill_mode: 			'cover', 			// options: 'contain' or 'cover'
 			scale_from: 		'center center', 	// options: all values that work for CSS background-position property
-			background:			'none',
-			lazy_load: 			false,
-			auto_start: 		true,
 			start_delay: 		0,
 			slide_duration: 	4000,
 			transition_time: 	500,
+			lazy_load: 			false,
+			auto_start: 		true,
 			pause_on_hover: 	false,
 			keyboard:			true,
 			gestures:			true,
 			theme:				'dark',
+			background:			'none',
 			prev_next_nav: 		'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			dots_nav: 			'inside', 			// options: 'inside', 'outside', 'hover', 'none'
 			caption: 			'outside', 			// options: 'inside', 'outside', 'hover', 'none'
@@ -251,7 +252,10 @@ $.fn.square1 = function(options) {
 		// Check to see when images are finished loading
 		img = new Image();
 		img.onload = function() {
-			if($this.height() < 1) $this.height($img.height())
+			// If slideshow has no height, set it to be proportionately sized to first image
+			if($this.height() < 1 && $img.height()) {
+				$this.height($img.height() / $img.width() * $this.width())
+			}
 
 			$(this).css('display', ''); // Show image as background instead
 

@@ -78,8 +78,8 @@ All modifications to how the slideshow runs are optional. To change the default 
 Here are all of the options with their default values:
 
 
-	width: 			$(_this).width(), 	// Sets slideshow width. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
-	height: 		$(_this).height(),  	// Sets slideshow height. Values: any specific measurement (px, em, vw, etc.) will work. Blank values will default to whatever size the CSS dictates.
+	width: 			$(_this).width(), 	// options: any CSS measurement. Blank values will default to whatever is set in CSS, or 'auto' if no CSS is set.
+	height: 		$(_this).height(),  	// options: any CSS measurement. Blank values will default to whatever is set in CSS, or the height of the first image if no CSS is set.
 	animation: 		'fade', 		// Transition animation style. Values: 'fade' or 'slide'
 	fill_mode: 		'cover', 		// Determines how images fill slideshow. Values: 'contain', 'cover', or pixel/percent value
 	scale_from: 		'center', 		// Values: all values that work for CSS background-position property (eg. 'right bottom', '100px 300px', etc.). Default set to 'center center' in CSS
