@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.5.1
+* @version 0.5.2
 */
 
 filter_gallery = '';
@@ -26,8 +26,8 @@ $.fn.square1 = function(options) {
 	// Initialize settings and defaults
 	if(!_this.settings) {
 		_this.settings = $.extend({
-			width: 				'', 				// options: any specific measurement. Blank values will default to whatever is set in CSS.
-			height: 			'',
+			width: 				'', 				// options: any CSS measurement. Blank values will default to whatever is set in CSS, or 'auto' if no CSS is set.
+			height: 			'',					// options: any CSS measurement. Blank values will default to whatever is set in CSS, or the height of the first image if no CSS is set.
 			fill_mode: 			'cover', 			// options: 'contain' or 'cover'
 			scale_from: 		'center center', 	// options: all values that work for CSS background-position property
 			background:			'none',
@@ -238,14 +238,21 @@ $.fn.square1 = function(options) {
 		if($img.prop('currentSrc')) var img_url = $img.prop('currentSrc');
 		else var img_url = $img.attr('src');
 
-
-		if($img.prop('currentSrc')) var img_url = $img.prop('currentSrc');
-		else var img_url = $img.attr('src');
+		// If srcset, get appropriate image url for screen size
+		if($img.attr('srcset')) {
+			srcset_array = $img.attr('srcset').split(',').reverse();
+			for(x = 0; x < srcset_array.length; x++) {
+				var src = srcset_array[x].trim().split(" ")
+				if($(window).width() < parseInt(src[1])) img_url = src[0]
+			}
+		}
 
 		$wrapper.css('background-image', "url(" + img_url + ")");
 		// Check to see when images are finished loading
 		img = new Image();
 		img.onload = function() {
+			if($this.height() < 1) $this.height($img.height())
+
 			$(this).css('display', ''); // Show image as background instead
 
 			if(_this.settings['lazy_load']) do_nothing = 1;
