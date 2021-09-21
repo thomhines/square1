@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.5.3
+* @version 0.5.4
 */
 
 filter_gallery = '';
@@ -76,8 +76,8 @@ $.fn.square1 = function(options) {
 	}
 
 	// If argument value is an integer, go to that image
-	if(Math.floor(options) === options && +options === options) {
-		jump_to_image(options-1);
+	if(!isNaN(options) && parseInt(options) == parseFloat(options)) {
+		jump_to_image(parseInt(options)-1);
 		if(_this.settings['auto_start']) reset_interval();
 		return;
 	}
