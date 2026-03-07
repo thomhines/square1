@@ -1,50 +1,25 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 21.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-	 width="200px" height="200px" viewBox="0 0 200 200" enable-background="new 0 0 200 200" xml:space="preserve">
-<g>
-	<path fill="#FFFFFF" d="M80.9,129.1v-15.7h7.8V91.5h-7.8V77h9.4l10.1-7.1h12.2v43.5h7.7v15.7H80.9z"/>
-</g>
-<g>
-	<defs>
-		<rect id="SVGID_1_" x="46" y="46" width="108" height="108"/>
-	</defs>
-	<clipPath id="SVGID_2_">
-		<use xlink:href="#SVGID_1_"  overflow="visible"/>
-	</clipPath>
-	<g clip-path="url(#SVGID_2_)">
-		<path fill="#FFFFFF" d="M68.8,41.1l90.2,27.7l-27.7,90.2l-90.2-27.7L68.8,41.1 M63.8,31.6L31.6,136.2l104.6,32.2l32.2-104.6
-			L63.8,31.6L63.8,31.6z"/>
-	</g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
-<g>
-</g>
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" width="88.61" height="88.61" viewBox="0 0 88.61 88.61">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #fff281;
+      }
+
+      .cls-2 {
+        fill: #f2a245;
+      }
+
+      .cls-3 {
+        fill: #ff5841;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <rect class="cls-2" x="25.23" width="63.38" height="88.61"/>
+      <rect class="cls-3" width="25.23" height="88.61"/>
+      <path class="cls-1" d="M81.61,73.35v6.21h-19.79v-6.21l5.52-.64v-9.25l-5.02.64-1.38-6.9,15.6-2.58v18.37l5.06.37Z"/>
+    </g>
+  </g>
 </svg>

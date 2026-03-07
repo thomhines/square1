@@ -5,229 +5,359 @@
 	<meta charset="utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 	<meta name="theme-color" content="#333">
+
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&family=Hepta+Slab:wght@1..900&family=Work+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
 	<link rel="Stylesheet" href="demo.css" type="text/css" media="all" />
 	<link rel="Stylesheet" href="../square1.css" type="text/css" media="all" />
 </head>
 
 <body>
 
-	<h1>Square1 jQuery Slider</h1>
 
-	<h4>Download and check out the documentation on <a href="https://github.com/thomhines/square1">GitHub</a>.</h4>
+	<div class="toc">
+		<img src="square1_logo.svg" class="logo" alt="Square1 Logo">
+		
+		<h1>Square1 <span>jQuery Slider</span></h1>
 
-	<h2>Examples</h2>
+		<h4>Download and check out the documentation on <a href="https://github.com/thomhines/square1">GitHub</a>.</h4>
 
-	<p>
-		<a href="#basic">Basic Slider</a><br>
-		<a href="#options_formatting">Slider Options & Formatting</a><br>
-		<a href="#html_slider">Slider w/ HTML Elements</a><br>
-		<a href="#positioning">Image Positioning</a><br>
-		<a href="#events">Events</a><br>
-		<a href="#responsive_images">Responsive Images</a><br>
-		<a href="#lazy_loading">Sequential and Lazy Loading</a><br>
-	</p>
+		<h2>Examples</h2>
 
-	<hr id="basic">
+		<ul>
+			<li><a href="#basic">Basic Slider</a></li>
+			<li><a href="#options_formatting">Slider Options & Formatting</a></li>
+			<li><a href="#html_slider">Slider w/ HTML Elements</a></li>
+			<li><a href="#events">Events</a></li>
+			<li><a href="#responsive_images">Responsive Images</a></li>
+			<li><a href="#lazy_loading">Sequential and Lazy Loading</a></li>
+		</ul>
 
-	<h3>Basic Slider</h3>
-
-	<a href="https://github.com/thomhines/square1"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a>
-
-	<p>One thing that sets Square1 apart from other sliders is its ability to cleanly present images of any size or shape.</p>
-
-
-	<p>Here are the images used in all of the sliders on this page. Notice that they are a mix of landscape and portrait orientations:</p>
-	<div class="example_images">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
 	</div>
+	<div class="content">
 
-	<p> The <b>fill_mode</b> property will let you control how and how much of your images people see. The default value is "cover", which resizes and crops images to make sure the slider is always filled.</p>
+		<h3 id="basic">Basic Slider</h3>
 
-	<p>To create a slideshow, simply create a container element filled with images in your HTML:</p>
-	<code>
-&lt;div class="slideshow"&gt;
-  &lt;img src="image1.png" alt="Caption 1"&gt;
-  &lt;img src="image2.png" alt="Caption 2"&gt;
-  &lt;img src="image3.png" alt="Caption 3"&gt;
-&lt;/div&gt;
-	</code>
+		<!-- <a href="https://github.com/thomhines/square1"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://camo.githubusercontent.com/38ef81f8aca64bb9a64448d0d70f1308ef5341ab/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f6461726b626c75655f3132313632312e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_darkblue_121621.png"></a> -->
 
-	<p>... And convert it to a sqaure1 slider by calling the square1() function in your javascript:</p>
-	<code>
-$('.slideshow').square1();
-	</code>
-
-	<div class="slideshow">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
-	</div>
-
-	<br><br>
-
-	<p>The alternative <b>fill_mode</b> option is "contain," will resize each image so that it fits completely inside the slideshow.</p>
-
-	<code>
-$('.slideshow_contain').square1({
-  fill_mode: '<b>contain</b>'
-});
-	</code>
-
-	<div class="slideshow_contain">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
-		<img data-src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-		<img data-src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
-	</div>
+		<p>One thing that sets Square1 apart from other sliders is its ability to cleanly present images of any size or shape.</p>
 
 
-	<hr id="options_formatting">
+		<p>Here are the images used in all of the sliders on this page. Notice that they are a mix of landscape and portrait orientations:</p>
+		<div class="example_images">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
 
-	<h3>Slider Options & Formatting</h3>
 
-	<p>You can easily control the size of the slideshow and the position/visibility of the UI.</p>
 
-	<code>
-$('.slideshow_formatting').square1({
+
+		
+		<hr id="options_formatting">
+
+		<h3>Slider Options & Formatting</h3>
+
+		<p>Square1 comes with a lot of options for controlling the look and behavior of the slider. You can control the any of these parameters on a slideshow-by-slideshow basis by setting them as an object in the square1() function.</p>
+
+		<code>$('.slideshow_formatting').square1({
   width: '200px',
   height: '200px',
   prev_next_nav: 'outside',
   dots_nav: 'outside',
   caption: 'none'
-});
-	</code>
-
-	<div class="slideshow_formatting">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
-	</div>
+});</code>
 
 
-	<hr>
+		<h4>Slider Options</h4>
+		
 
-	<p>Transitions can either be set to a cross-fade (default) or a 'slide' animation like this one here:</p>
 
-	<code>
-$('.slideshow_slide').square1({
+		<table class="options_table">
+			<thead>
+				<tr>
+					<th>Option</th>
+					<th>Default</th>
+					<th>Description</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td><code>width</code></td>
+					<td><code>''</code></td>
+					<td>Any CSS measurement. Blank defaults to CSS or <code>auto</code>.</td>
+				</tr>
+				<tr>
+					<td><code>height</code></td>
+					<td><code>''</code></td>
+					<td>Any CSS measurement. Blank defaults to CSS or the height of the first image.</td>
+				</tr>
+				<tr>
+					<td><code>animation</code></td>
+					<td><code>'fade'</code></td>
+					<td><code>'fade'</code> or <code>'slide'</code></td>
+				</tr>
+				<tr>
+					<td><code>fill_mode</code></td>
+					<td><code>'cover'</code></td>
+					<td><code>'contain'</code> or <code>'cover'</code></td>
+				</tr>
+				<tr>
+					<td><code>scale_from</code></td>
+					<td><code>'center center'</code></td>
+					<td>Any value valid for the CSS <code>background-position</code> property.</td>
+				</tr>
+				<tr>
+					<td><code>start_delay</code></td>
+					<td><code>0</code></td>
+					<td>Delay (ms) before the slideshow starts.</td>
+				</tr>
+				<tr>
+					<td><code>slide_duration</code></td>
+					<td><code>4000</code></td>
+					<td>Time (ms) each slide is shown.</td>
+				</tr>
+				<tr>
+					<td><code>transition_time</code></td>
+					<td><code>500</code></td>
+					<td>Duration (ms) of the transition between slides.</td>
+				</tr>
+				<tr>
+					<td><code>lazy_load</code></td>
+					<td><code>false</code></td>
+					<td>If <code>true</code>, load each image only when needed.</td>
+				</tr>
+				<tr>
+					<td><code>auto_start</code></td>
+					<td><code>true</code></td>
+					<td>Start the slideshow automatically.</td>
+				</tr>
+				<tr>
+					<td><code>pause_on_hover</code></td>
+					<td><code>false</code></td>
+					<td>Pause the slideshow when the user hovers over it.</td>
+				</tr>
+				<tr>
+					<td><code>keyboard</code></td>
+					<td><code>true</code></td>
+					<td>Enable arrow-key navigation.</td>
+				</tr>
+				<tr>
+					<td><code>gestures</code></td>
+					<td><code>true</code></td>
+					<td>Enable touch/swipe gestures.</td>
+				</tr>
+				<tr>
+					<td><code>theme</code></td>
+					<td><code>'dark'</code></td>
+					<td>UI theme; e.g. <code>'dark'</code> or <code>'light'</code>.</td>
+				</tr>
+				<tr>
+					<td><code>background</code></td>
+					<td><code>'none'</code></td>
+					<td>CSS background for the slider container.</td>
+				</tr>
+				<tr>
+					<td><code>prev_next_nav</code></td>
+					<td><code>'inside'</code></td>
+					<td><code>'inside'</code>, <code>'outside'</code>, <code>'hover'</code>, or <code>'none'</code>.</td>
+				</tr>
+				<tr>
+					<td><code>dots_nav</code></td>
+					<td><code>'inside'</code></td>
+					<td><code>'inside'</code>, <code>'outside'</code>, <code>'hover'</code>, or <code>'none'</code>.</td>
+				</tr>
+				<tr>
+					<td><code>caption</code></td>
+					<td><code>'outside'</code></td>
+					<td><code>'inside'</code>, <code>'outside'</code>, <code>'hover'</code>, or <code>'none'</code>.</td>
+				</tr>
+				<tr>
+					<td><code>onLoad</code></td>
+					<td><code>function() {}</code></td>
+					<td>Callback when all images have loaded.</td>
+				</tr>
+				<tr>
+					<td><code>onPlay</code></td>
+					<td><code>function() {}</code></td>
+					<td>Callback when the slideshow starts playing.</td>
+				</tr>
+				<tr>
+					<td><code>onStop</code></td>
+					<td><code>function() {}</code></td>
+					<td>Callback when the slideshow stops.</td>
+				</tr>
+				<tr>
+					<td><code>onChange</code></td>
+					<td><code>function() {}</code></td>
+					<td>Callback when the slide changes.</td>
+				</tr>
+			</tbody>
+		</table>
+
+
+		<hr>
+
+
+		<h4>fill_mode</h4>
+
+		<p> The <b>fill_mode</b> property will let you control how and how much of your images people see. The default value is "cover", which resizes and crops images to make sure the slider is always filled.</p>
+
+		<p>To create a slideshow, simply create a container element filled with images in your HTML:</p>
+		<code>&lt;div class="slideshow"&gt;
+  &lt;img src="image1.png" alt="Image Description 1" caption="Caption 1"&gt;
+  &lt;img src="image2.png" alt="Image Description 2" caption="Caption 2"&gt;
+  &lt;img src="image3.png" alt="Image Description 3" caption="Caption 3"&gt;
+&lt;/div&gt;</code>
+
+		<p>... And convert it to a sqaure1 slider by calling the square1() function in your javascript:</p>
+		<code>
+$('.slideshow').square1();
+		</code>
+
+		<div class="slideshow">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
+
+
+		<p>The alternative <b>fill_mode</b> option is "contain," will resize each image so that it fits completely inside the slideshow.</p>
+
+		<code>$('.slideshow_contain').square1({
+  fill_mode: '<b>contain</b>'
+});</code>
+
+		<div class="slideshow_contain">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img data-src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img data-src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
+
+
+		<h4>animation</h4>
+
+		<p>Transitions can either be set to a cross-fade (default) or a 'slide' animation like this one here:</p>
+
+		<code>$('.slideshow_slide').square1({
   animation: '<b>slide</b>'
-});
-	</code>
+});</code>
 
-	<div class="slideshow_slide">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
-	</div>
-
+		<div class="slideshow_slide">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
 
 
-	<hr>
 
-	<p>Square1 also comes with a 'light' theme for use on darker images and sites</p>
+		<h4>theme</h4>
 
-	<code>
-$('.slideshow_light').square1({
+		<p>Square1 also comes with a 'light' theme for use on darker images and sites</p>
+
+		<code>$('.slideshow_light').square1({
   theme: 'light'
-});
-	</code>
+});</code>
 
-	<div class="slideshow_light">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
-	</div>
-
+		<div class="slideshow_light">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
 
 
-	<hr id="html_slider">
+
+		<h4>Controls Positioning</h4>
+
+		<p>You can control the position of the controls (previous, next, dots) by setting the <b>prev_next_nav</b> and <b>dots_nav</b> options.</p>
+		<code>$('.slideshow_controls').square1({
+  prev_next_nav: '<b>outside</b>',
+  dots_nav: '<b>outside</b>'
+});</code>
+
+		<div class="slideshow_controls">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
 
 
-	<h3>Slider w/ HTML Elements</h3>
+		<h4>Image Positioning</h4>
 
-	<p>You can also make slides out of more complex HTML structures. Square1 will use the first `img` tag in each child element as the background of that slide.</p>
+		<p>If you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from (ie. which corner of the image will be pinned in place if parts of the image need to be scaled and cropped). You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.</p>
+		<code>$('.slideshow_scalefrom').square1({
+  scale_from: '<b>bottom right</b>'
+});</code>
 
-	<code>
-  &lt;div class="slideshow"&gt;
-    &lt;div&gt;
-  	  &lt;img src="image1.png" alt="Caption 1"&gt;
-  	  &lt;h3&gt;Slide Title&lt;/h3&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-  	  &lt;img src="image2.png" alt="Caption 2"&gt;
-  	  &lt;h3&gt;Slide Title&lt;/h3&gt;
-    &lt;/div&gt;
-    &lt;div&gt;
-  	  &lt;img src="image3.png" alt="Caption 3"&gt;
-  	  &lt;h3&gt;Slide Title&lt;/h3&gt;
-    &lt;/div&gt;
+		<p>And you can set this on an image-by-image basis by adding the 'scale-from' attribute to your images (resize your browser to see the result):</p>
+		<code>&lt;div class="slideshow_scalefrom"&gt;
+  &lt;img src="image1.png" alt="Caption 1" <b>scale-from="bottom left"</b>&gt;
+  &lt;img src="image2.png" alt="Caption 2" <b>scale-from="top right"</b>&gt;
+  &lt;img src="image3.png" alt="Caption 3"&gt;
+&lt;/div&gt;</code>
+
+		<div class="slideshow_scalefrom">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/" scale-from="bottom left">
+			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/" scale-from="top right">
+			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
+
+
+
+		<hr id="html_slider">
+
+
+		<h3>Slider w/ Non-Image Elements</h3>
+
+		<p>You can also make slides out of more things other than images, such as iframes or more complex HTML structures. Square1 will use the first `img` tag in each child element as the background of that slide. If no image is found, the child element will be used as as the slide content.</p>
+
+		<code>
+&lt;div class="slideshow"&gt;
+  &lt;div&gt;
+    &lt;img src="image1.png" alt="Image Description" caption="Caption 1"&gt;
+    &lt;div&gt;HTML Content&lt;/div&gt;
   &lt;/div&gt;
-  	</code>
+  &lt;div&gt;
+    &lt;img src="image1.png" alt="Image Description" caption="Caption 1"&gt;
+    &lt;h3&gt;Slide Title&lt;/h3&gt;
+  &lt;/div&gt;
+  &lt;div&gt;
+    &lt;img src="image1.png" alt="Image Description" caption="Caption 1"&gt;
+    &lt;h3&gt;Slide Title&lt;/h3&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+		</code>
 
-	<div class="slideshow_html">
-			<div>
-				<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+		<div class="slideshow_html">
+			<div class="slide">
+				<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
 				<div class="text_content">
 					<h3>Aenean pellentesque diam</h3>
-					<h5>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</h5>
+					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
 				</div>
 			</div>
-			<div>
-				<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-				<div class="text_content">
-					<h3>Suspendisse ac nisl</h3>
-					<h5>Cupiditate hic ratione perferendis quas fuga, deserunt at optio...</h5>
-				</div>
-			</div>
-			<div>
-				<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
+			<iframe width="560" height="315" src="https://www.youtube.com/embed/G1hKzCkywM8?si=-W5wS4CziVdviQab" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+			<div class="slide">
+				<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
 				<div class="text_content">
 					<h3>In dapibus magna sit amet mauris</h3>
-					<h5>Magnam recusandae animi...</h5>
+					<p>Magnam recusandae animi...</p>
 				</div>
 			</div>
 		</div>
 
 
 
-	<hr id="positioning">
 
+		<hr id="events">
 
+		<h3>Events</h3>
 
-	<h3>Image Positioning</h3>
+		<p>With built in events and callbacks, you can also control and respond to events in the slideshow however you want. </p>
 
-	<p>If you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from (ie. which corner of the image will be pinned in place if parts of the image need to be scaled and cropped). You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.</p>
-	<code>
-$('.slideshow_scalefrom').square1({
-  scale_from: '<b>bottom right</b>'
-});
-	</code>
-
-	<p>And you can set this on an image-by-image basis by adding the 'scale-from' attribute to your images (resize your browser to see the result):</p>
-	<code>
-&lt;div class="slideshow_scalefrom"&gt;
-  &lt;img src="image1.png" alt="Caption 1" <b>scale-from="bottom left"</b>&gt;
-  &lt;img src="image2.png" alt="Caption 2" <b>scale-from="top right"</b>&gt;
-  &lt;img src="image3.png" alt="Caption 3"&gt;
-&lt;/div&gt;
-	</code>
-
-	<div class="slideshow_scalefrom">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/" scale-from="bottom left">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/" scale-from="top right">
-		<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
-	</div>
-
-
-	<hr id="events">
-
-	<h3>Events</h3>
-
-	<p>With built in events and callbacks, you can also control and respond to events in the slideshow however you want. </p>
-
-	<code>
-$('.slideshow_events').square1({
+		<code>$('.slideshow_events').square1({
   auto_start: false,
   onPlay: function() { $('.status').html('Playing');},
   onStop: function() { $('.status').html('Stopped');},
@@ -235,7 +365,7 @@ $('.slideshow_events').square1({
 });
 
 
-// BUTTONS
+<i>// BUTTONS</i>
 $('.play').click(function() {
   $('.slideshow_events').square1('play');
 });
@@ -248,65 +378,62 @@ $('.next_slide').click(function() {
   $('.slideshow_events').square1('next');
 });
 
-// Jump to Slide 3
+<i>// Jump to Slide 3</i>
 $('.slide3').click(function() {
   $('.slideshow_events').square1(3);
-});
+});</code>
 
-	</code>
+		<div class="slideshow_events">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+		</div>
+		<div class="status_container">
+			<button class="play">Play</button>
+			<button class="stop">Stop</button>
+			<button class="next_slide">Next slide...</button>
+			<button class="slide3">Slide 3</button>
+			<div class="status">Status: <span>Stopped</span></div>
+		</div>
 
-	<div class="slideshow_events">
-		<img src="image1.jpg" alt="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
-		<img src="image2.jpg" alt="Napoli Coastline. Image from https://isorepublic.com/">
-		<img src="image3.jpg" alt="Portland Rock. Image from https://isorepublic.com/">
-	</div>
-	<div class="status">Stopped</div>
-	<button class="play">Play</button>
-	<button class="stop">Stop</button>
-	<button class="next_slide">Next slide...</button>
-	<button class="slide3">Slide 3</button>
 
+		<hr id="responsive_images">
 
-	<hr id="responsive_images">
+		<h3>Responsive Images</h3>
 
-	<h3>Responsive Images</h3>
+		<p>Square1 supports <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">srcset</a> right out of the box. Just create your various image sizes, add 'srcset' (and the optional 'size') attributes to your img tags and square1 will load the appropriately sized images as needed.</p>
 
-	<p>Square1 supports <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">srcset</a> right out of the box. Just create your various image sizes, add 'srcset' (and the optional 'size') attributes to your img tags and square1 will load the appropriately sized images as needed.</p>
-
-	<code>
-&lt;div class="slideshow_srcset"&gt;
+		<code>&lt;div class="slideshow_srcset"&gt;
   &lt;img src="image1.png"
-	<b>srcset="image1-sm.jpg 400w, image1-md.jpg 800w, image1.jpg 1200w"</b>
-	<b>sizes="(max-width: 500px) 400px, (max-width: 1200px) 800px, 1200px"</b>
-	alt="Caption 1"&gt;
-  ...
-&lt;/div&gt;
-	</code>
+    <b>srcset="image1-sm.jpg 400w, image1-md.jpg 800w, image1.jpg 1200w"</b>
+    <b>sizes="(max-width: 500px) 400px, (max-width: 1200px) 800px, 1200px"</b>
+    alt="Caption 1"&gt;
+    ...
+&lt;/div&gt;</code>
 
 
-	<hr id="lazy_loading">
+		<hr id="lazy_loading">
 
-	<h3>Sequential and Lazy Loading</h3>
+		<h3>Sequential and Lazy Loading</h3>
 
-	<p>Square1 will try to automatically stagger the downloading of images to make pages load faster and start playing sooner. To prevent the browser from trying to fetch images too early, add 'data-' before any 'src' and 'srcset' attributes on any images you want delayed. Square1 will convert the attributes at the appropriate time.</p>
+		<p>Square1 will try to automatically stagger the downloading of images to make pages load faster and start playing sooner. To prevent the browser from trying to fetch images too early, add 'data-' before any 'src' and 'srcset' attributes on any images you want delayed. Square1 will convert the attributes at the appropriate time.</p>
 
-	<code>
-&lt;div class="slideshow"&gt;
+		<code>&lt;div class="slideshow"&gt;
   &lt;img src="image1.png" srcset="image1-sm.jpg 400w" alt="Caption 1"&gt;
   &lt;img <b>data-src</b>="image2.png" <b>data-srcset</b>="image2-sm.jpg 400w" alt="Caption 2"&gt;
   &lt;img <b>data-src</b>="image3.png" <b>data-srcset</b>="image3-sm.jpg 400w" alt="Caption 3"&gt;
-&lt;/div&gt;
-	</code>
+&lt;/div&gt;</code>
 
-	<p>In cases where there are a lot of big images or complex animations, you might want to delay image loading even more. You can tell square1 to load each image only when it's needed ("lazy loading") by setting the <b>'lazy_load'</b> option to true.</p>
+		<p>In cases where there are a lot of big images or complex animations, you might want to delay image loading even more. You can tell square1 to load each image only when it's needed ("lazy loading") by setting the <b>'lazy_load'</b> option to true.</p>
 
-	<code>
-$('.slideshow_srcset').square1({
+		<code>$('.slideshow_srcset').square1({
   <b>lazy_load: true</b>
-});
-	</code>
+});</code>
 
-	<p><b>Note</b>: You must add the <b>'data-'</b> prefix to the 'src' and 'srcset' attributes as mentioned above for lazy or sequential loading to work.</p>
+		<p><b>Note</b>: You must add the <b>'data-'</b> prefix to the 'src' and 'srcset' attributes as mentioned above for lazy or sequential loading to work.</p>
+	
+	
+	</div> <!-- .content -->
 
 	<footer>
 		&copy; 2016 Thom Hines | <a href="https://projects.thomhines.com/square1/LICENSE">License</a>
@@ -317,18 +444,23 @@ $('.slideshow_srcset').square1({
 		$(function() {
 			$('.slideshow').square1();
 
-			$('.slideshow_html').square1();
+			$('.slideshow_html').square1({auto_start: false});
 
 			$('.slideshow_contain').square1({
 				fill_mode: 'contain'
 			});
 
-			$('.slideshow_formatting').square1({
-				width: '200px',
-				height: '200px',
+			// $('.slideshow_formatting').square1({
+			// 	width: '200px',
+			// 	height: '200px',
+			// 	prev_next_nav: 'outside',
+			// 	dots_nav: 'outside',
+			// 	caption: 'none'
+			// });
+
+			$('.slideshow_controls').square1({
 				prev_next_nav: 'outside',
-				dots_nav: 'outside',
-				caption: 'none'
+				dots_nav: 'outside'
 			});
 
 
@@ -350,9 +482,9 @@ $('.slideshow_srcset').square1({
 			$('.slideshow_events').square1({
 				slide_duration: 2000,
 				auto_start: false,
-				onPlay: function() { $('.status').html('Playing');},
-				onStop: function() { console.log('stop event'); $('.status').html('Stopped');},
-				onChange: function() { $('.status').html('Changing slides');},
+				onPlay: function() { $('.status span').html('Playing');},
+				onStop: function() { console.log('stop event'); $('.status span').html('Stopped');},
+				onChange: function() { $('.status span').html('Changing slides');},
 			});
 
 			$('.play').click(function() {
