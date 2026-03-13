@@ -28,6 +28,7 @@ $.fn.square1 = function(options) {
 		_this.settings = $.extend({
 			width: 				'', 				// options: any CSS measurement. Blank values will default to whatever is set in CSS, or 'auto' if no CSS is set.
 			height: 			'',					// options: any CSS measurement. Blank values will default to whatever is set in CSS, or the height of the first image if no CSS is set.
+			aspect_ratio: 		'',					// options: '16/9', '1.3', or any other valid CSS aspect-ratio value
 			animation:			'fade',				// options: 'fade' or 'slide'
 			fill_mode: 			'cover', 			// options: 'contain' or 'cover'
 			scale_from: 		'center center', 	// options: all values that work for CSS background-position property
@@ -88,7 +89,8 @@ $.fn.square1 = function(options) {
 	$($this).css({
 		position: 'relative',
 		width: _this.settings['width'],
-		height: _this.settings['height'],
+		height: _this.settings['aspect_ratio'] ? 'auto' : _this.settings['height'],
+		aspectRatio: _this.settings['aspect_ratio'] ? _this.settings['aspect_ratio'] : 'auto',
 		background: _this.settings['background'],
 	});
 
@@ -117,21 +119,21 @@ $.fn.square1 = function(options) {
 	$('.image_wrapper:not(.current_slide)', $this).hide();
 
 
-	$($this).append('<div class="square1_caption"></div>');
+	// $($this).append('<div class="square1_caption"></div>');
 
 	// Add slideshow navigation controls (if there is more than 1 image)
-	if($($this).find('.image_wrapper').length > 1) $($this).append('<div class="square1_controls"><span class="square1_prev_image">Previous</span><span class="square1_next_image">Next</span><div class="square1_dots"></div></div>');
+	if($($this).find('.image_wrapper').length > 1) $($this).append('<div class="square1_side_controls"><button class="square1_prev_image">Previous</button><button class="square1_next_image">Next</button></div><div class="square1_bottom_controls"><div class="square1_dots"></div><div class="square1_caption"></div></div>');
 
 	// Add loading
 	$($this).append('<div class="square1_spinner"></div>');
 
-	// For each img, add dot to dot nav
+	// For each slide, add dot to dot nav
 	var x = 0;
 	$('.image_wrapper', $this).each(function() {
-		$('.square1_dots', $this).append('<span data-image-num="' + x + '"></span>');
+		$('.square1_dots', $this).append('<button data-image-num="' + x + '"></button>');
 		x++;
 	});
-	$('.square1_dots span:first-child', $this).addClass('current')
+	$('.square1_dots button:first-child', $this).addClass('current')
 
 	if(_this.settings['animation'] == 'slide') {
 		$this.addClass('slide_animation');
@@ -168,7 +170,7 @@ $.fn.square1 = function(options) {
 		next_image();
 	});
 
-	$('.square1_dots span', $this).click(function() {
+	$('.square1_dots button', $this).click(function() {
 		jump_to_image($(this).data('image-num'));
 	});
 
@@ -232,7 +234,15 @@ $.fn.square1 = function(options) {
 		// skip if all images are loaded
 		if($($this).find('.image_wrapper:not(.image_loaded), .wrap_placeholder:not(.image_loaded)').length < 1) return
 
-		$img = $wrapper.find('img');
+		$img = $wrapper.children('img');
+		console.log($this.attr('class'), $img.attr('src'));
+
+		// if no image, skip
+		if($img.length < 1) {
+			$wrapper.addClass('image_loaded');
+			return;
+		}
+
 		if($img.attr('data-src')) $img.attr('src', $img.attr('data-src')).attr('srcset', $img.attr('data-srcset'));
 
 		clearTimeout(load_image_timeout);
@@ -251,34 +261,39 @@ $.fn.square1 = function(options) {
 		$wrapper.css('background-image', "url(" + img_url + ")");
 		// Check to see when images are finished loading
 		img = new Image();
-		img.onload = function() {
-			// If slideshow has no height, set it to be proportionately sized to first image
-			if($this.height() < 1 && $img.height()) {
-				$this.height($img.height() / $img.width() * $this.width())
-			}
 
-			$(this).css('display', ''); // Show image as background instead
+		// If image is first in slideshow, set height to be proportionately sized to first image
+		if($wrapper.index() == 0) {
+			img.onload = function() {
+				// If slideshow has no height, set it to be proportionately sized to first image
+				if($this.height() < 1 && $img.height()) {
+					// console.log($img.attr('src'),'setting height to', $img.height() / $img.width() * $this.width());
+					$this.height($img.height() / $img.width() * $this.width())
+				}
 
-			if(_this.settings['lazy_load']) do_nothing = 1;
-			else if($wrapper.next().hasClass('image_wrapper')) {
-				load_image_timeout = setTimeout(function() {
-					loadImage($wrapper.next());
-				}, 1000);
-			}
-			else if($wrapper.closest('.square1').find('.image_wrapper').length) {
-				load_image_timeout = setTimeout(function() {
-					loadImage($wrapper.closest('.square1').find('.image_wrapper').first());
-				}, 1000);
-			}
+				$(this).css('display', ''); // Show image as background instead
 
-			$wrapper.addClass('image_loaded')
+				if(_this.settings['lazy_load']) do_nothing = 1;
+				else if($wrapper.next().hasClass('image_wrapper')) {
+					load_image_timeout = setTimeout(function() {
+						loadImage($wrapper.next());
+					}, 1000);
+				}
+				else if($wrapper.closest('.square1').find('.image_wrapper').length) {
+					load_image_timeout = setTimeout(function() {
+						loadImage($wrapper.closest('.square1').find('.image_wrapper').first());
+					}, 1000);
+				}
 
-			if($wrapper.closest('.square1').find('.image_wrapper:not(.image_loaded)').length < 1) {
-				$this.attr('images_loaded', '').removeClass('loading');
-				_this.settings['onLoad']();
-			}
+				$wrapper.addClass('image_loaded')
 
-		};
+				if($wrapper.closest('.square1').find('.image_wrapper:not(.image_loaded)').length < 1) {
+					$this.attr('images_loaded', '').removeClass('loading');
+					_this.settings['onLoad']();
+				}
+
+			};
+		}
 		img.src = img_url;
 		if (img.complete) {
 			img.onload();
@@ -453,7 +468,9 @@ $.fn.square1 = function(options) {
 		}
 		$('.square1_caption', $this).fadeOut(_this.settings['transition_time'], function() {
 			setTimeout(function() { // Add a delay so that new image can load before getting new caption
-				$('.square1_caption', $this).html($('.current_slide img', $this).attr('alt')).fadeIn(_this.settings['transition_time'] - 200);
+				let caption = $('.current_slide img', $this).attr('caption') || $('.current_slide video', $this).attr('caption') || $('.current_slide figure', $this).attr('caption');
+				if(!caption) caption = '';
+				$('.square1_caption', $this).html(caption).fadeIn(_this.settings['transition_time'] - 200);
 			}, 10)
 		});
 	}
@@ -463,8 +480,8 @@ $.fn.square1 = function(options) {
 			$('.square1_dots', $this).remove();
 			return;
 		}
-		$('.square1_dots span', $this).removeClass('current');
-		$('.square1_dots span[data-image-num="' + $('.current_slide', $this).index() + '"]', $this).addClass('current');
+		$('.square1_dots button', $this).removeClass('current');
+		$('.square1_dots button[data-image-num="' + $('.current_slide', $this).index() + '"]', $this).addClass('current');
 	}
 	return $this;
 

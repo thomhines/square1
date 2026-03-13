@@ -201,6 +201,22 @@
 		<hr>
 
 
+		<h4>Slider Size and Aspect Ratio</h4>
+
+		<p>You can control the size of the slider by setting the <b>width</b> and <b>height</b> options.</p>
+		<code>$('.slideshow').square1({
+  width: '<b>200px</b>',
+  height: '<b>200px</b>'
+});</code>
+
+		<p>You can also set the aspect ratio of the slider by setting the <b>aspect_ratio</b> option.</p>
+		<code>$('.slideshow').square1({
+  aspect_ratio: '<b>16/9</b>'
+});</code>
+
+		<p>If no width or height is set, the slider will default to the size of the first image.</p>
+
+
 		<h4>fill_mode</h4>
 
 		<p> The <b>fill_mode</b> property will let you control how and how much of your images people see. The default value is "cover", which resizes and crops images to make sure the slider is always filled.</p>
@@ -218,8 +234,8 @@ $('.slideshow').square1();
 		</code>
 
 		<div class="slideshow">
-			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
 			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
 			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
 		</div>
 
@@ -331,16 +347,18 @@ $('.slideshow').square1();
 		</code>
 
 		<div class="slideshow_html">
-			<div class="slide">
+
+			<div class="slide1">
 				<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
 				<div class="text_content">
 					<h3>Aenean pellentesque diam</h3>
 					<p>Lorem ipsum dolor sit amet consectetur, adipisicing elit...</p>
 				</div>
 			</div>
-			<iframe width="560" height="315" src="https://www.youtube.com/embed/G1hKzCkywM8?si=-W5wS4CziVdviQab" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-			<div class="slide">
-				<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
+
+			<iframe src="https://www.youtube.com/embed/G1hKzCkywM8?si=-W5wS4CziVdviQab" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+
+			<div class="slide3">
 				<div class="text_content">
 					<h3>In dapibus magna sit amet mauris</h3>
 					<p>Magnam recusandae animi...</p>
@@ -432,11 +450,13 @@ $('.slide3').click(function() {
 
 		<p><b>Note</b>: You must add the <b>'data-'</b> prefix to the 'src' and 'srcset' attributes as mentioned above for lazy or sequential loading to work.</p>
 	
-	
+
+		<footer>
+			&copy; 2016–2026 Thom Hines | <a href="https://projects.thomhines.com/square1/LICENSE">License</a>
+		</footer>	
+
 	</div> <!-- .content -->
 
-	<footer>
-		&copy; 2016 Thom Hines | <a href="https://projects.thomhines.com/square1/LICENSE">License</a>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 	<script src="../square1.js"></script>
@@ -444,7 +464,10 @@ $('.slide3').click(function() {
 		$(function() {
 			$('.slideshow').square1();
 
-			$('.slideshow_html').square1({auto_start: false});
+			$('.slideshow_html').square1({
+				auto_start: false,
+				aspect_ratio: '16/9'
+			});
 
 			$('.slideshow_contain').square1({
 				fill_mode: 'contain'

@@ -27,6 +27,18 @@
       "plM" : 52780316221407,
       "prP" : 0
     },
+    "\/demo\/demo-min.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/demo\/demo-min-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
     "\/demo\/demo.css" : {
       "aP" : 1,
       "bl" : 0,
@@ -122,6 +134,29 @@
       "pME" : 1,
       "rFN" : 0,
       "uCM" : 0
+    },
+    "\/square1-min.css" : {
+      "aP" : 1,
+      "bl" : 0,
+      "ci" : 0,
+      "co" : 0,
+      "ft" : 16,
+      "ma" : 0,
+      "oA" : 0,
+      "oAP" : "\/square1-min-min.css",
+      "oF" : 0,
+      "pg" : 0
+    },
+    "\/square1-min.js" : {
+      "bF" : 0,
+      "ft" : 64,
+      "ma" : 0,
+      "mi" : 1,
+      "oA" : 0,
+      "oAP" : "\/square1-min-min.js",
+      "oF" : 0,
+      "sC" : 3,
+      "tS" : 0
     },
     "\/square1.css" : {
       "aP" : 1,
