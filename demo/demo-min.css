@@ -40,6 +40,34 @@ body {
 	font-weight: 500;
 }
 
+.toc a.button {
+	display: block;
+	margin: 4rem auto;
+	background: #ff5841;
+	color: #fff;
+	width: 100%;
+	text-align: center;
+	text-decoration: none;
+	border-radius: 4px;
+	padding: 1em 2em;
+	font-size: 1rem;
+	font-weight: 500;
+	font-family: "Work Sans", helvetica, arial, sans-serif;
+	border-radius: 4px;
+}
+
+.toc a.button .github_logo {
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 0.5em;
+	line-height: 0;
+}
+
+.toc a.button:hover {
+	background: #fff281;
+	color: #000;
+}
+
 .content {
 	padding: 0;
 }
@@ -52,20 +80,23 @@ body {
 }
 
 h1 {
-	margin: 0 0 1em;
+	margin: 0 0 .2em;
 	font-size: 2.5rem;
+	line-height: 1;
 	color: #ffffff;
 	font-family: "Hepta Slab", serif;
 }
 
 h1 span {
 	display: block;
-	font-size: .5em;
+	margin: .4em 0 0;
+	font-size: .4em;
+	font-weight: 400;
 }
 
 h2 {
 	font-size: 1.2rem;
-	color: #ffc0b8;
+	color: #fff281;
 	font-family: "Hepta Slab", serif;
 }
 
@@ -90,6 +121,11 @@ h5 {
 	text-transform: uppercase;
 }
 
+h6 {
+	margin: 0 0 .4em;
+	font-size: .6em;
+}
+
 p {
 	margin: 0 0 1em;
 }
@@ -103,6 +139,17 @@ ul {
 
 a {
 	color: #ff5841;
+	transition: all 0.3s ease;
+}
+
+a.button {
+	display: inline-block;
+	background: #a23729;
+	color: #fff;
+	border: none;
+	margin: .4em .2em 1em 0;
+	padding: 1em 2em;
+	font-size: 1rem;
 }
 
 .square1 {

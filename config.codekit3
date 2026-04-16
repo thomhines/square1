@@ -124,6 +124,14 @@
       "oAP" : "\/LICENSE",
       "oF" : 0
     },
+    "\/README.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/README.html",
+      "oF" : 0
+    },
     "\/README.md" : {
       "cB" : 0,
       "cS" : 0,
@@ -191,7 +199,15 @@
     }
   },
   "hooks" : [
-
+    {
+      "enabled" : 1,
+      "name" : "Update version number",
+      "predicateDataBase64Encoded" : "YnBsaXN0MDDUAQIDBAUGBwpYJHZlcnNpb25ZJGFyY2hpdmVyVCR0b3BYJG9iamVjdHMSAAGGoF8QD05TS2V5ZWRBcmNoaXZlctEICVRyb290gAGvEBYLDBMYICorLjU5Pj9CRkpPUFNZXWFjVSRudWxs0w0ODxAREl8QF05TQ29tcG91bmRQcmVkaWNhdGVUeXBlXxAPTlNTdWJwcmVkaWNhdGVzViRjbGFzcxACgAKAFdIUDxUXWk5TLm9iamVjdHOhFoADgBTUDxkaGxwdHh9fEBFOU1JpZ2h0RXhwcmVzc2lvbl8QEE5TTGVmdEV4cHJlc3Npb25fEBNOU1ByZWRpY2F0ZU9wZXJhdG9ygBOADoAEgBHVISIjJA8lJicoKVlOU09wZXJhbmReTlNTZWxlY3Rvck5hbWVfEBBOU0V4cHJlc3Npb25UeXBlW05TQXJndW1lbnRzgAaABRADgAiADVx2YWx1ZUZvcktleTrSIw8sLRABgAfSLzAxMlokY2xhc3NuYW1lWCRjbGFzc2VzXxAQTlNTZWxmRXhwcmVzc2lvbqMxMzRcTlNFeHByZXNzaW9uWE5TT2JqZWN00hQPNjihN4AJgAzTDyM6Ozw9WU5TS2V5UGF0aIALEAqACl1pbnB1dEZ1bGxQYXRo0i8wQEFfEBxOU0tleVBhdGhTcGVjaWZpZXJFeHByZXNzaW9uo0AzNNIvMENEXk5TTXV0YWJsZUFycmF5o0NFNFdOU0FycmF50i8wR0hfEBNOU0tleVBhdGhFeHByZXNzaW9upEdJMzRfEBROU0Z1bmN0aW9uRXhwcmVzc2lvbtNLIw9MTU5fEA9OU0NvbnN0YW50VmFsdWWADxAAgBBXc3F1YXJlMdIvMFFSXxAZTlNDb25zdGFudFZhbHVlRXhwcmVzc2lvbqNRMzTUD1RVVldNLFhaTlNNb2RpZmllcldOU0ZsYWdzXk5TT3BlcmF0b3JUeXBlgBIQY9IvMFpbXxAVTlNJblByZWRpY2F0ZU9wZXJhdG9yo1pcNF8QE05TUHJlZGljYXRlT3BlcmF0b3LSLzBeX18QFU5TQ29tcGFyaXNvblByZWRpY2F0ZaNeYDRbTlNQcmVkaWNhdGXSLzBFYqJFNNIvMGRlXxATTlNDb21wb3VuZFByZWRpY2F0ZaNkYDQACAARABoAJAApADIANwBJAEwAUQBTAGwAcgB5AJMApQCsAK4AsACyALcAwgDEAMYAyADRAOUA+AEOARABEgEUARYBIQErAToBTQFZAVsBXQFfAWEBYwFwAXUBdwF5AX4BiQGSAaUBqQG2Ab8BxAHGAcgBygHRAdsB3QHfAeEB7wH0AhMCFwIcAisCLwI3AjwCUgJXAm4CdQKHAokCiwKNApUCmgK2AroCwwLOAtYC5QLnAukC7gMGAwoDIAMlAz0DQQNNA1IDVQNaA3AAAAAAAAACAQAAAAAAAABmAAAAAAAAAAAAAAAAAAADdA==",
+      "runOrder" : 0,
+      "scriptSourceString" : "#!\/bin\/bash\n\n\nVER=\"1.0.1\"\n\n\n\n# ------------------------------------------------------------\n# No changes needed below this line\n# ------------------------------------------------------------\n\nSCRIPT_DIR=\"$(cd \"$(dirname \"${BASH_SOURCE[0]}\")\" && pwd)\"\n\necho \"Bumping version to $VER in all project files...\"\n\n# Replace version strings matching x.x.x pattern in all\n# relevant file types in the project root\nfind \"$SCRIPT_DIR\" -maxdepth 2 \\( \\\n    -name \"*.js\" -o \\\n    -name \"*.css\" -o \\\n    -name \"*.json\" -o \\\n    -name \"*.md\" -o \\\n    -name \"*.html\" \\\n\\) | while read -r file; do\n    if grep -qE '[0-9]+\\.[0-9]+\\.[0-9]+' \"$file\"; then\n        sed -i '' -E \"s\/[0-9]+\\.[0-9]+\\.[0-9]+\/$VER\/g\" \"$file\"\n        echo \"  Updated: $(basename \"$file\")\"\n    fi\ndone\n\necho \"Done.\"",
+      "scriptType" : 1,
+      "uuidString" : "5D6EA511-6CB4-4D8F-BE9B-738244C3E73E"
+    }
   ],
   "manualImportLinks" : {
 

@@ -6,8 +6,9 @@
 * https://github.com/thomhines/square1
 * @version 1.0.1
 */
+/* global jQuery */
 
-filter_gallery = '';
+var filter_gallery = '';
 
 (function($){
 $.fn.square1 = function(options) {
@@ -21,7 +22,6 @@ $.fn.square1 = function(options) {
 	// _this.square1_interval = null;
 	_this.reset_position_timeout = null;
 	var load_image_timeout = null;
-	var slideshow_hover = false;
 
 	// Initialize settings and defaults
 	if(!_this.settings) {
@@ -213,9 +213,9 @@ $.fn.square1 = function(options) {
 		});
 
 		$($this).on('touchend', function(e) {
-			deltaX = touchMove.touches[0].screenX - touchstartX;
-			deltaY = touchMove.touches[0].screenY - touchstartY;
-			touchDuration = new Date() - touchstartTime;
+			var deltaX = touchMove.touches[0].screenX - touchstartX;
+			var deltaY = touchMove.touches[0].screenY - touchstartY;
+			var touchDuration = new Date() - touchstartTime;
 
 			if(Math.abs(deltaX / deltaY) < 2) return;
 			if(Math.abs(deltaX) < 30) return;
@@ -441,9 +441,9 @@ $.fn.square1 = function(options) {
 
 		// Slide animation
 		if(_this.settings['animation'] == 'slide') {
-			reset_slide_position = false;
-			target_slide = image_num
-			last_slide = $('.slide', $this).last().index()
+			var reset_slide_position = false;
+			var target_slide = image_num
+			var last_slide = $('.slide', $this).last().index()
 			clearTimeout(_this.reset_position_timeout)
 
 			$('.slide, .slide_placeholder', $this).removeClass('no_transition')
@@ -462,7 +462,7 @@ $.fn.square1 = function(options) {
 
 			$('.current_slide', $this).removeClass('current_slide')
 			$('.slide', $this).eq(image_num).addClass('current_slide');
-			translate_target = target_slide * -100;
+			var translate_target = target_slide * -100;
 			$('.slide, .slide_placeholder', $this).css('transform','translateX('+translate_target+'%)')
 
 			if(reset_slide_position == "first") {

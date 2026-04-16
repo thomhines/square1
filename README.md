@@ -13,7 +13,7 @@ A very simple jQuery image/content slider that responsively handles images of an
 Download or copy the project files into your web-accessible assets directory, then load jQuery and Square1:
 
 ```html
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.0.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <link rel="Stylesheet" href="/path/to/square1/square1.min.css" type="text/css" />
 <script src="/path/to/square1/square1.min.js"></script>
 ```
@@ -29,7 +29,7 @@ composer require thomhines/square1
 Then include files from your Composer `vendor` directory:
 
 ```html
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.0.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <link rel="Stylesheet" href="/vendor/thomhines/square1/square1.min.css" type="text/css" />
 <script src="/vendor/thomhines/square1/square1.min.js"></script>
 ```
@@ -46,7 +46,7 @@ git submodule update --init --recursive
 Then include it in your page:
 
 ```html
-<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-1.0.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
 <link rel="Stylesheet" href="/vendor/square1/square1.min.css" type="text/css" />
 <script src="/vendor/square1/square1.min.js"></script>
 ```
