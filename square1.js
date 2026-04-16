@@ -1,10 +1,10 @@
-/*
+/*!
 * Square1 Slider
 * Copyright (c) 2016 Thom Hines
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 1.0.0
+* @version 1.0.1
 */
 
 filter_gallery = '';

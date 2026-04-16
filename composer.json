@@ -2,7 +2,7 @@
 	"name": "thomhines/square1",
 	"description": "Square1 jQuery slider (JS/CSS image/content slider with responsive srcset support).",
 	"type": "library",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"license": "MIT",
 	"keywords": [
 		"jquery",
