@@ -92,7 +92,12 @@
 				<tr>
 					<td><code>height</code></td>
 					<td><code>''</code></td>
-					<td>Any CSS measurement. Blank defaults to CSS or the height of the first image.</td>
+					<td>Any CSS measurement. When blank and <code>aspect_ratio</code> is also blank, the slideshow height follows the first loaded image via CSS <code>aspect-ratio</code> (after the image decodes). Otherwise inherits from CSS or options.</td>
+				</tr>
+				<tr>
+					<td><code>aspect_ratio</code></td>
+					<td><code>''</code></td>
+					<td>Any valid CSS <code>aspect-ratio</code> value (e.g. <code>'16/9'</code>, <code>'1.3'</code>). When set, <code>height</code> is forced to <code>'auto'</code> so the box sizes from width and this ratio.</td>
 				</tr>
 				<tr>
 					<td><code>animation</code></td>
@@ -107,7 +112,7 @@
 				<tr>
 					<td><code>scale_from</code></td>
 					<td><code>'center center'</code></td>
-					<td>Any value valid for the CSS <code>background-position</code> property.</td>
+					<td>Default <code>object-position</code> for slide images (same values as CSS <code>object-position</code> / former <code>background-position</code>). Per-image overrides: <code>scale-from</code> and <code>scale-from-mobile</code> attributes on <code>&lt;img&gt;</code> (mobile uses <code>scale-from-mobile</code> under 600px when present).</td>
 				</tr>
 				<tr>
 					<td><code>start_delay</code></td>
@@ -201,20 +206,20 @@
 		<hr>
 
 
-		<h4>Slider Size and Aspect Ratio</h4>
+		<h4 id="aspect_ratio">Slider Size and Aspect Ratio</h4>
 
-		<p>You can control the size of the slider by setting the <b>width</b> and <b>height</b> options.</p>
+		<p>You can control the size of the slider with the <b>width</b> and <b>height</b> options (any CSS lengths).</p>
 		<code>$('.slideshow').square1({
   width: '<b>200px</b>',
   height: '<b>200px</b>'
 });</code>
 
-		<p>You can also set the aspect ratio of the slider by setting the <b>aspect_ratio</b> option.</p>
+		<p>You can lock the viewport to a fixed proportion with the <b>aspect_ratio</b> option (any valid CSS <code class="inline">aspect-ratio</code> value). When <code class="inline">aspect_ratio</code> is set, height is treated as <code class="inline">auto</code> so the box derives its height from width and the ratio.</p>
 		<code>$('.slideshow').square1({
   aspect_ratio: '<b>16/9</b>'
 });</code>
 
-		<p>If no width or height is set, the slider will default to the size of the first image.</p>
+		<p>If both <b>height</b> and <b>aspect_ratio</b> are left blank, Square1 sets <code class="inline">aspect-ratio</code> on the slideshow from the <b>first image’s intrinsic dimensions</b> after it loads, so the slider gets a sensible height without manual pixel math. Slides use real <code class="inline">&lt;img&gt;</code> elements with <code class="inline">object-fit</code>; <code class="inline">srcset</code> / <code class="inline">sizes</code> are handled by the browser.</p>
 
 
 		<h4>fill_mode</h4>
@@ -229,9 +234,7 @@
 &lt;/div&gt;</code>
 
 		<p>... And convert it to a sqaure1 slider by calling the square1() function in your javascript:</p>
-		<code>
-$('.slideshow').square1();
-		</code>
+		<code>$('.slideshow').square1();</code>
 
 		<div class="slideshow_cover">
 			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
@@ -302,7 +305,7 @@ $('.slideshow').square1();
 
 		<h4>Image Positioning</h4>
 
-		<p>If you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from (ie. which corner of the image will be pinned in place if parts of the image need to be scaled and cropped). You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.</p>
+		<p>If you are using the default &quot;cover&quot; fill mode, you can set the focal point for cropping with <b>scale_from</b> (default <code class="inline">object-position</code> for all images), or per image with the <code class="inline">scale-from</code> / <code class="inline">scale-from-mobile</code> attributes. Values are the same as for CSS <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/object-position"><code class="inline">object-position</code></a>.</p>
 		<code>$('.slideshow_scalefrom').square1({
   scale_from: '<b>bottom right</b>'
 });</code>
@@ -327,7 +330,7 @@ $('.slideshow').square1();
 
 		<h3>Slider w/ Non-Image Elements</h3>
 
-		<p>You can also make slides out of more things other than images, such as iframes or more complex HTML structures. Square1 will use the first `img` tag in each child element as the background of that slide. If no image is found, the child element will be used as as the slide content.</p>
+		<p>You can also make slides out of more than plain images: iframes or richer HTML. Each direct child of the slideshow is wrapped in a <b>slide</b> container. Square1 uses the first <code>&lt;img&gt;</code> in each slide for full-bleed imagery (<code>object-fit</code> according to <code>fill_mode</code>). If there is no <code>&lt;img&gt;</code>, the slide content is shown as-is.</p>
 
 		<code>
 &lt;div class="slideshow"&gt;
@@ -419,7 +422,7 @@ $('.slide3').click(function() {
 
 		<h3>Responsive Images</h3>
 
-		<p>Square1 supports <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">srcset</a> right out of the box. Just create your various image sizes, add 'srcset' (and the optional 'size') attributes to your img tags and square1 will load the appropriately sized images as needed.</p>
+		<p>Square1 supports <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">srcset</a> on normal visible <code>&lt;img&gt;</code> tags. Add <code>srcset</code> (and optional <code>sizes</code>); the browser picks the resource, so you do not need custom logic for widths.</p>
 
 		<code>&lt;div class="slideshow_srcset"&gt;
   &lt;img src="image1.png"

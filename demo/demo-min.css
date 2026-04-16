@@ -131,6 +131,11 @@ code b {
 	font-weight: 700;
 }
 
+code.inline {
+	display: inline;
+	padding: .2em .4em;
+}
+
 .status_container button {
 	display: inline-block;
 	background: #ff5841;

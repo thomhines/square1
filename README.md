@@ -1,6 +1,7 @@
 # Square1
-A very simple image slider that will responsively work with images of any size or shape.
-*requires jQuery*
+A very simple, responsive jQuery image slider that responsively handles images of any size or shape.
+
+*Requires jQuery*
 
 ### [Demo](http://projects.thomhines.com/square1/)
 
@@ -16,122 +17,105 @@ A very simple image slider that will responsively work with images of any size o
 		<link rel="Stylesheet" href="square1/square1.min.css" type="text/css" />
 		<script src="square1/square1.min.js"></script>
 
-3. Turn your images into a slideshow
+3. Turn your markup into a slideshow
 
-	#### HTML:
+	#### HTML
 
-	You can create a slideshow from a list of images:
+	Each **direct child** of the slideshow container is wrapped in an internal **slide** element. You can use a flat list of images:
 
 		<div class="slideshow">
+			<img src="image1.png" alt="Short label" caption="Longer caption text">
+			<img data-src="image2.png" alt="Short label" caption="Caption 2">
+			<img data-src="image3.png" alt="Short label" caption="Caption 3">
+		</div>
+
+	* **`caption`** — optional; used by the caption UI when enabled (in addition to `alt`).
+	* **`data-src` / `data-srcset`** — optional **data-** prefix delays loading until Square1 promotes them to `src` / `srcset` (sequential loading). Pair with the **`lazy_load`** option to load each slide only when needed.
+	* **`srcset` / `sizes`** — optional; native responsive selection applies to visible images.
+	* **`scale-from` / `scale-from-mobile`** — optional per-image **`object-position`**; on narrow viewports (under 600px), `scale-from-mobile` wins when present.
+	* **`space`** — optional; copied onto the slide wrapper for advanced filtering (see global `filter_gallery` in the script if you use tagged slides).
+
+	Or use **rich slides** (first `<img>` in each child is the photo layer; remaining markup is overlaid or non-image slides without an `<img>`):
+
+	```html
+	<div class="slideshow">
+		<div>
 			<img src="image1.png" alt="Caption 1">
-			<img data-src="image2.png" alt="Caption 2">
-			<img data-src="image3.png" alt="Caption 3">
+			<h3>Slide title</h3>
 		</div>
-
-	*Note*: Appending **data-** to the 'src' and 'srcset' attributes will enable async loading (eg. data-src="image1.png").
-
-
-	OR, you can include slides as HTML content elements. The `img` tag inside the slide will be used as the slide's background:
-
-		<div class="slideshow">
-			<div>
-				<img src="image1.png" alt="Caption 1">
-				<h3>Slide Title</h3>
-			</div>
-			<div>
-				<img src="image2.png" alt="Caption 2">
-				<h3>Slide Title</h3>
-			</div>
-			<div>
-				<img src="image3.png" alt="Caption 3">
-				<h3>Slide Title</h3>
-			</div>
+		<div>
+			<img src="image2.png" alt="Caption 2">
+			<h3>Slide title</h3>
 		</div>
+	</div>
+	```
 
+	#### JavaScript
 
-	Additionally, if you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from by adding the 'scale-from' attribute to your images. You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.
-
-		<img src="image1.png" alt="Caption 1" scale-from="right top">
-		<img data-src="image2.png" alt="Caption 2" scale-from="center bottom">
-		<img data-src="image3.png" alt="Caption 3" scale-from="left bottom">
-
-
-	#### JS:
-
-		$(function() {
-			$('.slideshow').square1();
-		});
-
-
-
-
-## Slideshow Options
-
-All modifications to how the slideshow runs are optional. To change the default behavior, simply add the options you want to change to the `square1()` function like so:
-
-	$('.slideshow').square1({
-		slide_duration: 8000,
-		dots_nav: 'hover'
+	```javascript
+	$(function() {
+		$('.slideshow').square1();
 	});
+	```
+
+	Fixed 16:9 viewport (overrides intrinsic sizing):
+
+	```javascript
+	$(function() {
+		$('.slideshow').square1({ aspect_ratio: '16/9' });
+	});
+	```
 
 
-Here are all of the options with their default values:
+## Slideshow options
+
+Pass an object of overrides to **`square1()`**:
+
+```javascript
+$('.slideshow').square1({
+	slide_duration: 8000,
+	dots_nav: 'hover'
+});
+```
+
+Defaults and meanings (see **`square1.js`** for inline comments):
+
+| Option | Default | Description |
+|--------|---------|-------------|
+| **`width`** | `''` | Any CSS width. Blank uses stylesheet / block layout (demo uses full width). |
+| **`height`** | `''` | Any CSS height. When blank and **`aspect_ratio`** is also blank, the first decoded image sets **`aspect-ratio`** on the root so the box gets a height. |
+| **`aspect_ratio`** | `''` | Any valid CSS **`aspect-ratio`** (e.g. `'16/9'`, `'1.3'`). When set, height is applied as **`auto`** so the box sizes from width and this ratio. |
+| **`animation`** | `'fade'` | `'fade'` or `'slide'`. |
+| **`fill_mode`** | `'cover'` | `'cover'` or `'contain'` — maps to **`object-fit`** on slide images. |
+| **`scale_from`** | `'center center'` | Default **`object-position`** for images (same keyword grammar as CSS). |
+| **`start_delay`** | `0` | Milliseconds before autoplay when **`auto_start`** is true. |
+| **`slide_duration`** | `4000` | Milliseconds each slide stays visible. |
+| **`transition_time`** | `500` | Transition duration in ms. |
+| **`lazy_load`** | `false` | When **`true`**, does not pre-load the sequential chain; images load when needed (still use **`data-src`** / **`data-srcset`** where appropriate). |
+| **`auto_start`** | `true` | Start the timer automatically. |
+| **`pause_on_hover`** | `false` | Pause autoplay while the pointer is over the slideshow. |
+| **`keyboard`** | `true` | Arrow keys; tabindex is set when enabled. |
+| **`gestures`** | `true` | Swipe to change slides on touch devices. |
+| **`theme`** | `'dark'` | `'dark'` or `'light'` UI chrome. |
+| **`background`** | `'none'` | CSS background on the slideshow root. |
+| **`prev_next_nav`** | `'inside'` | `'inside'`, `'outside'`, `'hover'`, or `'none'`. |
+| **`dots_nav`** | `'inside'` | Same choices as arrows. |
+| **`caption`** | `'outside'` | `'inside'`, `'outside'`, `'hover'`, or `'none'` — uses the **`caption`** attribute when present. |
+| **`onLoad`** | `function () {}` | Fires when all slides have finished loading. |
+| **`onPlay`** | `function () {}` | Fires when playback starts. |
+| **`onStop`** | `function () {}` | Fires when playback stops. |
+| **`onChange`** | `function () {}` | Fires after the active slide changes. |
 
 
-	width: 			$(_this).width(), 	// options: any CSS measurement. Blank values will default to whatever is set in CSS, or 'auto' if no CSS is set.
-	height: 		$(_this).height(),  	// options: any CSS measurement. Blank values will default to whatever is set in CSS, or the height of the first image if no CSS is set.
-	animation: 		'fade', 		// Transition animation style. Values: 'fade' or 'slide'
-	fill_mode: 		'cover', 		// Determines how images fill slideshow. Values: 'contain', 'cover', or pixel/percent value
-	scale_from: 		'center', 		// Values: all values that work for CSS background-position property (eg. 'right bottom', '100px 300px', etc.). Default set to 'center center' in CSS
-	background:		'none',			// Set slideshow background color. Values: any CSS color or valid CSS background value
-	auto_start: 		true,			// Set whether slideshow autoplays or not. Values: true/false
-	start_delay: 		0, 			// If auto_start is true, set how long to wait before slideshow starts. Values: ms
-	slide_duration: 	4000, 			// Amount of time each slide is shown before progressing to next. Values: ms
-	transition_time: 	500, 			// Amount of time it takes to transition from one slie to next. Values: ms
-	pause_on_hover: 	true,			// Pause autoplay if user hovers mouse over slideshow. Values: true/valse
-	keyboard: 		true,			// Allow users to control slideshow with arrow keys. Will automatically add slideshows into keyboard tab order. Values: true/valse
-	gestures: 		true,			// Allow users to control slideshow with touch gestures (swipe left/right). Values: true/valse
-	lazy_load: 		false,			// Enabling this will load images as they are needed instead of on page load
-	theme:			'dark',			// Set color palette of slideshow UI elements. Values: 'dark', 'light'
-	prev_next_nav: 		'inside', 		// How to display (or not) the arrow nav buttons. Values: 'inside', 'outside', 'hover', 'none'
-	dots_nav: 		'inside', 		// How to display (or not) the dot nav buttons. Values: 'inside', 'outside', 'hover', 'none'
-	caption: 		'outside', 		// How to display (or not) image captions. Values: 'inside', 'outside', 'hover', 'none'
+## Remote control
 
-	// Callback functions
-	onLoad: 		function() {},		// Triggered when slideshow has completed loading
-	onPlay: 		function() {},		// Triggered when slideshow starts playing
-	onStop: 		function() {},		// Triggered when slideshow stops playing
-	onChange: 		function() {}		// Triggered after slide has changed
-
-
-## Slideshow Remote Control Functions
-
-You can also control any Square1 slideshow remotely via JS:
-
-	// Start slideshow
-	$('.slideshow').square1('play');
-
-	// Stop slideshow
-	$('.slideshow').square1('stop');
-
-	// Go to next slide
-	$('.slideshow').square1('next');
-
-	// Go to previous slide
-	$('.slideshow').square1('prev');
-
-	// Jump to slide N (or any integer);
-	$('.slideshow').square1(5);
-
-
-
-## Other Settings
-
-If you are using the default "cover" fill mode to scale your images, you can set the point from which the image should scale from (ie. which corner of the image will be pinned in place if parts of the image need to be scaled and cropped). You can use any values that work with the CSS [background-position](https://www.w3schools.com/cssref/pr_background-position.asp) property.
-
-And you can set this on an image-by-image basis by adding the 'scale-from' attribute to your images (resize your browser to see the result):
-
-  	<img src="image1.png" alt="Caption 1" scale-from="top left" scale-from-mobile="bottom center">
+```javascript
+$('.slideshow').square1('play');
+$('.slideshow').square1('stop');
+$('.slideshow').square1('next');
+$('.slideshow').square1('prev');
+$('.slideshow').square1(5);   // jump to slide 5 (1-based index)
+```
 
 
 ## Thanks
