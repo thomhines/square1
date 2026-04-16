@@ -1,45 +1,90 @@
 .square1 {
 	font-family: helvetica, arial, sans-serif;
-}
-
-.square1 img {
-	display:none;
-}
-
-.slides_container_outer {
 	position: relative;
+	width: 100%;
+	max-width: 100%;
+	min-width: 0;
+}
+
+/* Fill the slideshow box; percentage height only resolves once .square1 has a used height (inline, aspect-ratio, or set below from the first image). */
+.square1 > .slides_container_outer {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
 	height: 100%;
 }
 
 .slides_container {
-    position: relative;
-    height: 100%;
+	position: relative;
+	height: 100%;
+	min-height: 100%;
 	overflow: hidden;
 }
 
-.image_wrapper,
-.wrap_placeholder {
+.slide,
+.slide_placeholder {
 	position:absolute;
 	top:0;
 	left:0;
 	width:100%;
 	height:100%;
-	background-color: none;
-	background-size: 0;
-	background-position:center center;
-	background-repeat:no-repeat;
 	transition: transform 1s ease-in-out;
 }
 
-.image_wrapper.no_transition,
-.wrap_placeholder.no_transition {
+.slide.no_transition,
+.slide_placeholder.no_transition {
 	transition: none !important;
 }
 
-.image_wrapper > a {
+.slide > a {
 	display:block;
 	width:100%;
 	height:100%;
+}
+
+.slide img,
+.slide_placeholder img {
+	display: block;
+	opacity: 0;
+	transition: opacity 300ms;
+	width: 100%;
+	height: 100%;
+}
+
+.slide.image_loaded img,
+.slide_placeholder.image_loaded img {
+	opacity: 1;
+}
+
+.fill_mode-cover .slide img,
+.fill_mode-cover .slide_placeholder img {
+	object-fit: cover;
+}
+
+.fill_mode-contain .slide img,
+.fill_mode-contain .slide_placeholder img {
+	object-fit: contain;
+}
+
+.scale_from-top-left .slide img,
+.scale_from-top-left .slide_placeholder img {
+	object-position: top left;
+}
+
+.scale_from-top-right .slide img,
+.scale_from-top-right .slide_placeholder img {
+	object-position: top right;
+}
+
+.scale_from-bottom-left .slide img,
+.scale_from-bottom-left .slide_placeholder img {
+	object-position: bottom left;
+}
+
+.scale_from-bottom-right .slide img,
+.scale_from-bottom-right .slide_placeholder img {
+	object-position: bottom right;
 }
 
 .square1_prev_image,.square1_next_image {
@@ -144,37 +189,6 @@
 
 
 /* custom settings styles */
-
-.fill_mode-contain .image_wrapper,
-.fill_mode-contain .wrap_placeholder {
-	background-size: contain;
-}
-
-.fill_mode-cover .image_wrapper,
-.fill_mode-cover .wrap_placeholder  {
-	background-size: cover;
-}
-
-
-.scale_from-top-left .image_wrapper,
-.scale_from-top-left .wrap_placeholder {
-	background-position: top left;
-}
-
-.scale_from-top-right .image_wrapper,
-.scale_from-top-right .wrap_placeholder {
-	background-position: top right;
-}
-
-.scale_from-bottom-left .image_wrapper,
-.scale_from-bottom-left .wrap_placeholder {
-	background-position: bottom left;
-}
-
-.scale_from-bottom-right .image_wrapper,
-.scale_from-bottom-right .wrap_placeholder {
-	background-position: bottom right;
-}
 
 .prev_next_nav-outside .square1_prev_image {
 	left: -60px;
