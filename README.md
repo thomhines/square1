@@ -1,5 +1,5 @@
 # Square1
-A very simple, responsive jQuery image slider that responsively handles images of any size or shape.
+A very simple jQuery image/content slider that responsively handles images of any size or shape.
 
 *Requires jQuery*
 

@@ -3,7 +3,7 @@
 }
 
 html, body {
-	background: #fffbd4;
+	background: #ffffff;
 	color: #222;
 	font-family: "Work Sans", helvetica, arial, sans-serif;
 	font-size: 16px;
@@ -54,7 +54,7 @@ body {
 h1 {
 	margin: 0 0 1em;
 	font-size: 2.5rem;
-	color: #fffbd4;
+	color: #ffffff;
 	font-family: "Hepta Slab", serif;
 }
 
@@ -82,7 +82,7 @@ h3:first-of-type {
 h4 {
 	margin: 3em 0 .3em;
 	font-size: 1.2rem;
-	color: #ff5841;
+	color: #c54433;
 }
 
 h5 {
@@ -98,7 +98,7 @@ ul {
 	margin: -.4em 0 1em;
 	padding: 0;
 	list-style-position: inside;
-	color: #ff5841;
+	color: #a23729;
 }
 
 a {
@@ -113,7 +113,7 @@ code {
 	display: block;
 	margin: 0 0 1em;
 	padding: 1em;
-	background: #e7e3c0;
+	background: #edecd7;
 	color: #000;
 	font-weight: 450;
 	font-size: .9rem;
@@ -155,7 +155,7 @@ code.inline {
 }
 
 .status {
-	background: #e7e3c0;
+	background: #edecd7;
 	padding: 1em;
 	font-weight: 600;
 	width: 300px;
@@ -201,7 +201,7 @@ table td {
 
 table th {
 	font-weight: 600;
-	background: #e7e3c0;
+	background: #edecd7;
 	color: #333;
 }
 

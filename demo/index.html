@@ -45,7 +45,7 @@
 		<p>One thing that sets Square1 apart from other sliders is its ability to cleanly present images of any size or shape.</p>
 
 
-		<p>Here are the images used in all of the sliders on this page. Notice that they are a mix of landscape and portrait orientations:</p>
+		<p>Here are the images used in most of the sliders on this page. Notice that they are a mix of landscape and portrait orientations:</p>
 		<div class="example_images">
 			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
 			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
@@ -237,8 +237,8 @@
 		<code>$('.slideshow').square1();</code>
 
 		<div class="slideshow_cover">
-			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
-			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
+			<img src="image1.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
+			<img src="image2.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
 			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
 		</div>
 
@@ -422,7 +422,7 @@ $('.slide3').click(function() {
 
 		<h3>Responsive Images</h3>
 
-		<p>Square1 supports <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">srcset</a> on normal visible <code>&lt;img&gt;</code> tags. Add <code>srcset</code> (and optional <code>sizes</code>); the browser picks the resource, so you do not need custom logic for widths.</p>
+		<p>Square1 supports <a href="https://developer.mozilla.org/en-US/docs/Learn/HTML/Multimedia_and_embedding/Responsive_images">srcset</a> on normal visible <code class="inline">&lt;img&gt;</code> tags. Add <code class="inline">srcset</code> (and optional <code class="inline">sizes</code>); the browser picks the resource, so you do not need custom logic for widths.</p>
 
 		<code>&lt;div class="slideshow_srcset"&gt;
   &lt;img src="image1.png"
@@ -431,6 +431,43 @@ $('.slide3').click(function() {
     alt="Caption 1"&gt;
     ...
 &lt;/div&gt;</code>
+
+		<p>Here is a live responsive <b>srcset</b> demo using hard-coded <a href="https://placehold.co/">placehold.co</a> URLs. Each candidate is deterministic and labeled by width so source switching is obvious. Resize your browser and inspect the active request in DevTools (note: browsers may keep an already-fetched larger image when shrinking, so it's best to scale from smaller to larger).</p>
+
+		<code>&lt;div class="slideshow_srcset"&gt;
+  &lt;img
+    src="https://placehold.co/220x140/1f2937/ffffff.png?text=A+220w"
+    srcset="https://placehold.co/220x140/1f2937/ffffff.png?text=A+220w 220w, https://placehold.co/320x204/1f2937/ffffff.png?text=A+320w 320w, ... , https://placehold.co/1120x713/1f2937/ffffff.png?text=A+1120w 1120w"
+    sizes="(max-width: 400px) 220px, (max-width: 600px) 320px, ... , (max-width: 1600px) 820px, 920px"
+  &gt;
+  &lt;!-- ... additional images ... --&gt;
+&lt;/div&gt;
+
+$('.slideshow_srcset').square1({
+  aspect_ratio: '16/9',
+  auto_start: false
+});</code>
+
+		<div class="slideshow_srcset">
+			<img
+				src="https://placehold.co/220x140/1f2937/ffffff.png?text=A+220w"
+				srcset="https://placehold.co/220x140/1f2937/ffffff.png?text=A+220w 220w, https://placehold.co/320x204/1f2937/ffffff.png?text=A+320w 320w, https://placehold.co/420x267/1f2937/ffffff.png?text=A+420w 420w, https://placehold.co/520x331/1f2937/ffffff.png?text=A+520w 520w, https://placehold.co/620x395/1f2937/ffffff.png?text=A+620w 620w, https://placehold.co/720x458/1f2937/ffffff.png?text=A+720w 720w, https://placehold.co/820x522/1f2937/ffffff.png?text=A+820w 820w, https://placehold.co/920x586/1f2937/ffffff.png?text=A+920w 920w, https://placehold.co/1020x649/1f2937/ffffff.png?text=A+1020w 1020w, https://placehold.co/1120x713/1f2937/ffffff.png?text=A+1120w 1120w"
+				sizes="(max-width: 400px) 220px, (max-width: 600px) 320px, (max-width: 800px) 420px, (max-width: 1000px) 520px, (max-width: 1200px) 620px, (max-width: 1400px) 720px, (max-width: 1600px) 820px, (max-width: 1800px) 920px, (max-width: 2000px) 1020px, 1120px"
+				alt="Responsive srcset demo image 1"
+				caption="Responsive srcset demo 1 (placehold.co)">
+			<img
+				src="https://placehold.co/220x140/0f766e/ffffff.png?text=B+220w"
+				srcset="https://placehold.co/220x140/0f766e/ffffff.png?text=B+220w 220w, https://placehold.co/320x204/0f766e/ffffff.png?text=B+320w 320w, https://placehold.co/420x267/0f766e/ffffff.png?text=B+420w 420w, https://placehold.co/520x331/0f766e/ffffff.png?text=B+520w 520w, https://placehold.co/620x395/0f766e/ffffff.png?text=B+620w 620w, https://placehold.co/720x458/0f766e/ffffff.png?text=B+720w 720w, https://placehold.co/820x522/0f766e/ffffff.png?text=B+820w 820w, https://placehold.co/920x586/0f766e/ffffff.png?text=B+920w 920w, https://placehold.co/1020x649/0f766e/ffffff.png?text=B+1020w 1020w, https://placehold.co/1120x713/0f766e/ffffff.png?text=B+1120w 1120w"
+				sizes="(max-width: 400px) 220px, (max-width: 600px) 320px, (max-width: 800px) 420px, (max-width: 1000px) 520px, (max-width: 1200px) 620px, (max-width: 1400px) 720px, (max-width: 1600px) 820px, (max-width: 1800px) 920px, (max-width: 2000px) 1020px, 1120px"
+				alt="Responsive srcset demo image 2"
+				caption="Responsive srcset demo 2 (placehold.co)">
+			<img
+				src="https://placehold.co/220x140/7c2d12/ffffff.png?text=C+220w"
+				srcset="https://placehold.co/220x140/7c2d12/ffffff.png?text=C+220w 220w, https://placehold.co/320x204/7c2d12/ffffff.png?text=C+320w 320w, https://placehold.co/420x267/7c2d12/ffffff.png?text=C+420w 420w, https://placehold.co/520x331/7c2d12/ffffff.png?text=C+520w 520w, https://placehold.co/620x395/7c2d12/ffffff.png?text=C+620w 620w, https://placehold.co/720x458/7c2d12/ffffff.png?text=C+720w 720w, https://placehold.co/820x522/7c2d12/ffffff.png?text=C+820w 820w, https://placehold.co/920x586/7c2d12/ffffff.png?text=C+920w 920w, https://placehold.co/1020x649/7c2d12/ffffff.png?text=C+1020w 1020w, https://placehold.co/1120x713/7c2d12/ffffff.png?text=C+1120w 1120w"
+				sizes="(max-width: 400px) 220px, (max-width: 600px) 320px, (max-width: 800px) 420px, (max-width: 1000px) 520px, (max-width: 1200px) 620px, (max-width: 1400px) 720px, (max-width: 1600px) 820px, (max-width: 1800px) 920px, (max-width: 2000px) 1020px, 1120px"
+				alt="Responsive srcset demo image 3"
+				caption="Responsive srcset demo 3 (placehold.co)">
+		</div>
 
 
 		<hr id="lazy_loading">
@@ -452,6 +489,28 @@ $('.slide3').click(function() {
 });</code>
 
 		<p><b>Note</b>: You must add the <b>'data-'</b> prefix to the 'src' and 'srcset' attributes as mentioned above for lazy or sequential loading to work.</p>
+		
+		<p>Here is a dedicated lazy-loading demo using remote placeholder images that are not used anywhere else on this page. It is set to <b>auto_start: false</b>, so only the first image loads initially. Additional images load only when you navigate to them.</p>
+
+		<code>&lt;div class="slideshow_lazy_demo"&gt;
+  &lt;img data-src="https://picsum.photos/id/1018/1400/900"&gt;
+  &lt;img data-src="https://picsum.photos/id/1025/1400/900"&gt;
+  &lt;img data-src="https://picsum.photos/id/1043/1400/900"&gt;
+  &lt;img data-src="https://picsum.photos/id/1067/1400/900"&gt;
+&lt;/div&gt;
+
+$('.slideshow_lazy_demo').square1({
+  lazy_load: true,
+  auto_start: false,
+  aspect_ratio: '16/9'
+});</code>
+
+		<div class="slideshow_lazy_demo">
+			<img data-src="https://picsum.photos/id/1018/1400/900" alt="Lazy demo image 1" caption="Remote placeholder image 1 (picsum.photos)">
+			<img data-src="https://picsum.photos/id/1026/1400/900" alt="Lazy demo image 2" caption="Remote placeholder image 2 (picsum.photos)">
+			<img data-src="https://picsum.photos/id/1043/1400/900" alt="Lazy demo image 3" caption="Remote placeholder image 3 (picsum.photos)">
+			<img data-src="https://picsum.photos/id/1067/1400/900" alt="Lazy demo image 4" caption="Remote placeholder image 4 (picsum.photos)">
+		</div>
 	
 
 		<footer>
@@ -515,6 +574,17 @@ $('.slide3').click(function() {
 				onPlay: function() { $('.status span').html('Playing');},
 				onStop: function() { console.log('stop event'); $('.status span').html('Stopped');},
 				onChange: function() { $('.status span').html('Changing slides');},
+			});
+
+			$('.slideshow_srcset').square1({
+				aspect_ratio: '16/9',
+				auto_start: false
+			});
+
+			$('.slideshow_lazy_demo').square1({
+				lazy_load: true,
+				auto_start: false,
+				aspect_ratio: '16/9'
 			});
 
 			$('.play').click(function() {

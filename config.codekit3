@@ -79,7 +79,7 @@
     },
     "\/demo\/image3.jpg" : {
       "ft" : 16384,
-      "iS" : 449869,
+      "iS" : 134436,
       "jF" : 0,
       "oA" : 0,
       "oAP" : "\/demo\/image3.jpg",
@@ -114,6 +114,14 @@
       "hM" : 0,
       "oA" : 0,
       "oAP" : "\/LICENSE",
+      "oF" : 0
+    },
+    "\/README.html" : {
+      "cB" : 0,
+      "ft" : 8192,
+      "hM" : 0,
+      "oA" : 0,
+      "oAP" : "\/README.html",
       "oF" : 0
     },
     "\/README.md" : {
