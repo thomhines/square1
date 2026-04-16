@@ -1,0 +1,26 @@
+{
+	"name": "thomhines/square1",
+	"description": "Square1 jQuery slider (JS/CSS image/content slider with responsive srcset support).",
+	"type": "library",
+	"version": "1.0.0",
+	"license": "MIT",
+	"keywords": [
+		"jquery",
+		"slider",
+		"slideshow",
+		"carousel",
+		"frontend",
+		"javascript",
+		"css"
+	],
+	"homepage": "https://github.com/thomhines/square1",
+	"support": {
+		"issues": "https://github.com/thomhines/square1/issues",
+		"source": "https://github.com/thomhines/square1"
+	},
+	"authors": [
+		{
+			"name": "Thom Hines"
+		}
+	]
+}

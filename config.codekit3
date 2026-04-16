@@ -27,6 +27,14 @@
       "plM" : 52780316221407,
       "prP" : 0
     },
+    "\/composer.json" : {
+      "ft" : 524288,
+      "oA" : 1,
+      "oAP" : "\/composer-min.json",
+      "oF" : 0,
+      "oO" : 1,
+      "oS" : 1
+    },
     "\/demo\/demo-min.css" : {
       "aP" : 1,
       "bl" : 0,

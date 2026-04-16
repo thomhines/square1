@@ -4,7 +4,7 @@
 * Licensed under MIT.
 * @author Thom Hines
 * https://github.com/thomhines/square1
-* @version 0.5.4
+* @version 1.0.0
 */
 
 filter_gallery = '';

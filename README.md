@@ -8,64 +8,91 @@ A very simple jQuery image/content slider that responsively handles images of an
 
 ## Installation
 
-1. Link to jQuery
+### 1) Manual installation
 
-		<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+Download or copy the project files into your web-accessible assets directory, then load jQuery and Square1:
 
-2. Link to the Square1 JS and CSS
+```html
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<link rel="Stylesheet" href="/path/to/square1/square1.min.css" type="text/css" />
+<script src="/path/to/square1/square1.min.js"></script>
+```
 
-		<link rel="Stylesheet" href="square1/square1.min.css" type="text/css" />
-		<script src="square1/square1.min.js"></script>
+### 2) Composer (Packagist)
 
-3. Turn your markup into a slideshow
+Install with Composer:
 
-	#### HTML
+```bash
+composer require thomhines/square1
+```
 
-	Each **direct child** of the slideshow container is wrapped in an internal **slide** element. You can use a flat list of images:
+Then include files from your Composer `vendor` directory:
 
-		<div class="slideshow">
-			<img src="image1.png" alt="Short label" caption="Longer caption text">
-			<img data-src="image2.png" alt="Short label" caption="Caption 2">
-			<img data-src="image3.png" alt="Short label" caption="Caption 3">
-		</div>
+```html
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<link rel="Stylesheet" href="/vendor/thomhines/square1/square1.min.css" type="text/css" />
+<script src="/vendor/thomhines/square1/square1.min.js"></script>
+```
 
-	* **`caption`** — optional; used by the caption UI when enabled (in addition to `alt`).
-	* **`data-src` / `data-srcset`** — optional **data-** prefix delays loading until Square1 promotes them to `src` / `srcset` (sequential loading). Pair with the **`lazy_load`** option to load each slide only when needed.
-	* **`srcset` / `sizes`** — optional; native responsive selection applies to visible images.
-	* **`scale-from` / `scale-from-mobile`** — optional per-image **`object-position`**; on narrow viewports (under 600px), `scale-from-mobile` wins when present.
-	* **`space`** — optional; copied onto the slide wrapper for advanced filtering (see global `filter_gallery` in the script if you use tagged slides).
+### 3) Git submodule
 
-	Or use **rich slides** (first `<img>` in each child is the photo layer; remaining markup is overlaid or non-image slides without an `<img>`):
+Add Square1 as a submodule:
 
-	```html
-	<div class="slideshow">
-		<div>
-			<img src="image1.png" alt="Caption 1">
-			<h3>Slide title</h3>
-		</div>
-		<div>
-			<img src="image2.png" alt="Caption 2">
-			<h3>Slide title</h3>
-		</div>
+```bash
+git submodule add https://github.com/thomhines/square1.git vendor/square1
+git submodule update --init --recursive
+```
+
+Then include it in your page:
+
+```html
+<script src="https://code.jquery.com/jquery-3.5.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<link rel="Stylesheet" href="/vendor/square1/square1.min.css" type="text/css" />
+<script src="/vendor/square1/square1.min.js"></script>
+```
+
+### Usage
+
+#### HTML
+
+Each **direct child** of the slideshow container is wrapped in an internal **slide** element. You can use a flat list of images:
+
+```html
+<div class="slideshow">
+	<img src="image1.png" alt="Short label" caption="Longer caption text">
+	<img data-src="image2.png" alt="Short label" caption="Caption 2">
+	<img data-src="image3.png" alt="Short label" caption="Caption 3">
+</div>
+```
+
+* **`caption`** — optional; used by the caption UI when enabled (in addition to `alt`).
+* **`data-src` / `data-srcset`** — optional **data-** prefix delays loading until Square1 promotes them to `src` / `srcset` (sequential loading). Pair with the **`lazy_load`** option to load each slide only when needed.
+* **`srcset` / `sizes`** — optional; native responsive selection applies to visible images.
+* **`scale-from` / `scale-from-mobile`** — optional per-image **`object-position`**; on narrow viewports (under 600px), `scale-from-mobile` wins when present.
+* **`space`** — optional; copied onto the slide wrapper for advanced filtering (see global `filter_gallery` in the script if you use tagged slides).
+
+Or use **rich slides** (first `<img>` in each child is the photo layer; remaining markup is overlaid or non-image slides without an `<img>`):
+
+```html
+<div class="slideshow">
+	<div>
+		<img src="image1.png" alt="Caption 1">
+		<h3>Slide title</h3>
 	</div>
-	```
+	<div>
+		<img src="image2.png" alt="Caption 2">
+		<h3>Slide title</h3>
+	</div>
+</div>
+```
 
-	#### JavaScript
+#### JavaScript
 
-	```javascript
-	$(function() {
-		$('.slideshow').square1();
-	});
-	```
-
-	Fixed 16:9 viewport (overrides intrinsic sizing):
-
-	```javascript
-	$(function() {
-		$('.slideshow').square1({ aspect_ratio: '16/9' });
-	});
-	```
-
+```javascript
+$(function() {
+	$('.slideshow').square1();
+});
+```
 
 ## Slideshow options
 
@@ -118,6 +145,15 @@ $('.slideshow').square1(5);   // jump to slide 5 (1-based index)
 ```
 
 
+## License
+
+Square1 is released under the MIT License. See the [`LICENSE`](LICENSE) file for full text.
+
+
 ## Thanks
 
-Thanks to http://isorepublic.com/ for the images
+Thanks to the following image providers used in the demos:
+
+- https://isorepublic.com/
+- https://placehold.co/
+- https://picsum.photos/
