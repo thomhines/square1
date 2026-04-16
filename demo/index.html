@@ -233,7 +233,7 @@
 $('.slideshow').square1();
 		</code>
 
-		<div class="slideshow">
+		<div class="slideshow_cover">
 			<img src="image2.jpg" alt="Example Image" caption="Napoli Coastline. Image from https://isorepublic.com/">
 			<img src="image1.jpg" alt="Example Image" caption="Duckpool Beach, Cornwall. Image from https://isorepublic.com/">
 			<img src="image3.jpg" alt="Example Image" caption="Portland Rock. Image from https://isorepublic.com/">
@@ -466,6 +466,10 @@ $('.slide3').click(function() {
 
 			$('.slideshow_html').square1({
 				auto_start: false,
+				aspect_ratio: '16/9'
+			});
+
+			$('.slideshow_cover').square1({
 				aspect_ratio: '16/9'
 			});
 

@@ -139,7 +139,7 @@ $.fn.square1 = function(options) {
 	$($this).append('<div class="square1_spinner"></div>');
 
 	// For each img, add dot to dot nav
-	var x = 0;
+	let x = 0;
 	$('.slide', $this).each(function() {
 		$('.square1_dots', $this).append('<button data-image-num="' + x + '"></button>');
 		x++;
@@ -149,7 +149,7 @@ $.fn.square1 = function(options) {
 	if(_this.settings['animation'] == 'slide') {
 		$this.addClass('slide_animation');
 		$('.slide, .slide_placeholder', $this).show();
-		var x = 0;
+		let x = 0;
 
 		$('.slide, .slide_placeholder', $this).each(function() {
 			$(this).css({left: x * 100 + "%", transitionDuration: _this.settings['transition_time'] + 'ms'});
@@ -265,7 +265,7 @@ $.fn.square1 = function(options) {
 			return;
 		}
 
-		$img = $wrapper.find('img').first();
+		var $img = $wrapper.find('img').first();
 
 		// if no image, skip
 		if($img.length < 1) {
@@ -279,7 +279,10 @@ $.fn.square1 = function(options) {
 
 		clearTimeout(load_image_timeout);
 
+		var markedReady = false;
 		function markSlideReady() {
+			if (markedReady) return;
+			markedReady = true;
 			if ($wrapper.hasClass('image_loaded')) {
 				return;
 			}
@@ -291,16 +294,17 @@ $.fn.square1 = function(options) {
 
 				$wrapper.addClass('image_loaded');
 
-				if(_this.settings['lazy_load']) do_nothing = 1;
-				else if($wrapper.next().hasClass('slide')) {
-					load_image_timeout = setTimeout(function() {
-						loadImage($wrapper.next());
-					}, 1000);
-				}
-				else if($wrapper.closest('.square1').find('.slide').length) {
-					load_image_timeout = setTimeout(function() {
-						loadImage($wrapper.closest('.square1').find('.slide').first());
-					}, 1000);
+				if(!_this.settings['lazy_load']) {
+					if($wrapper.next().hasClass('slide')) {
+						load_image_timeout = setTimeout(function() {
+							loadImage($wrapper.next());
+						}, 1000);
+					}
+					else if($wrapper.closest('.square1').find('.slide').length) {
+						load_image_timeout = setTimeout(function() {
+							loadImage($wrapper.closest('.square1').find('.slide').first());
+						}, 1000);
+					}
 				}
 
 				if($wrapper.closest('.square1').find('.slide:not(.image_loaded)').length < 1 && $this.attr('images_loaded') === undefined) {
@@ -361,12 +365,10 @@ $.fn.square1 = function(options) {
 	}
 
 
-	show_trace = 0
 	function stop_slideshow() {
 		clearInterval(_this.square1_interval);
 		_this.square1_interval = null;
 		_this.settings['onStop']();
-		show_trace = 1
 	}
 
 
@@ -382,7 +384,6 @@ $.fn.square1 = function(options) {
 
 	var loop_slider = 0
 	function next_image() {
-		var curr_slide_index = $('.current_slide', $this).index();
 		var next_slide_index = $('.current_slide', $this).next('.slide').index();
 
 		if(filter_gallery) {
@@ -405,7 +406,6 @@ $.fn.square1 = function(options) {
 
 
 	function prev_image() {
-		var curr_slide_index = $('.current_slide', $this).index();
 		var prev_slide_index = $('.current_slide', $this).prev('.slide').index();
 
 		if(filter_gallery) {
